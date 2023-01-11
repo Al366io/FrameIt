@@ -8,8 +8,8 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  width: 96%;
-  margin: 2% 2% 0% 2%;
+  margin: 2%;
+  width: 95vw;
   justify-content: space-between;
   background-color: beige;
   height: 12%;
@@ -21,6 +21,8 @@
   justify-content: center;
   align-items: center;
   margin: 0 5% 0 5%;
+  width: 50%;
+  height: 100%;
 }
 
 .navButton {
@@ -31,17 +33,25 @@
 }
 
 .bodyWrapper {
-  height: 88vh;
+  height: 84vh;
 }
 
-ul.list{
+ul.list {
   margin: 0;
 }
 
 .firstHalf {
-  width: 100%;
   height: 50%;
-  background: none;
+  width: 95vw;
+  margin: 2%;
+  background: rgba(154, 70, 169, 0.492);
+  background: linear-gradient(
+    -45deg,
+    rgb(202, 118, 174) 0%,
+    rgb(130, 74, 202) 65%,
+    rgb(161, 87, 210) 83%
+  );
+  border-radius: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -49,9 +59,33 @@ ul.list{
 }
 
 .secondHalf {
-  width: 100%;
+  height: 50%;
+  width: 95vw;
+  margin: 2%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 50%;
-  background: none;
+  background: rgb(237, 130, 255);
+  background: linear-gradient(
+    -330deg,
+    rgba(237, 130, 255, 1) 0%,
+    rgba(144, 97, 207, 1) 65%,
+    rgba(134, 87, 210, 1) 83%
+  );
+  border-radius: 10px;
+}
+
+.logoImg {
+  width: 100%;
+}
+
+.createParty {
+  width: 50%;
+  height: 13%;
+  border-radius: 10px;
+  border: none;
+  font-size: 130%;
+  background-color: rgb(152, 152, 255);
 }
