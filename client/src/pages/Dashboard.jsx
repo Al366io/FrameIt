@@ -31,15 +31,15 @@ function Dashboard() {
   return (
     <div className="dashboardWrapper">
       <Navbar></Navbar>
-      <div className="firstHalf">
+      <div className="qrWrap">
         <h3 className="removeDefaultStyling">Room #{id}</h3>
         <QRCodeSVG
           id="dash-qr"
-          size="200px"
+          size="130px"
           value={`http://localhost:3000/adder/${id}`}
         />
-        <button className="button-dash" onClick={handleShare}>
-          <span>SHARE</span>
+        <button className="buttonShare" onClick={handleShare}>
+          SHARE
         </button>
         <span></span>
       </div>

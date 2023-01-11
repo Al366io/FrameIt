@@ -9,3 +9,31 @@
   margin: 0;
   padding: 0;
 }
+
+.buttonShare {
+  width: 30%;
+  height: 10%;
+  color: rgb(0, 0, 0);
+  background-color: rgb(210, 162, 255);
+  font-size: large;
+  border: none;
+  border-radius: 5px;
+}
+
+.qrWrap {
+  height: 30%;
+  width: 95vw;
+  margin: 2%;
+  background: rgba(154, 70, 169, 0.492);
+  background: linear-gradient(
+    -45deg,
+    rgb(202, 118, 174) 0%,
+    rgb(130, 74, 202) 65%,
+    rgb(161, 87, 210) 83%
+  );
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
