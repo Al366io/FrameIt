@@ -1,4 +1,4 @@
-exports.createOwner = async (user_email) => {
+export async function createOwner(user_email) {
   const data = {
     email: user_email,
   };
@@ -11,9 +11,9 @@ exports.createOwner = async (user_email) => {
   }).then((response) => response.text());
   if (response.status === 204) return 1;
   return null;
-};
+}
 
-exports.createParty = async (email) => {
+export async function createParty(email) {
   const data = {
     email: email,
   };
@@ -27,9 +27,9 @@ exports.createParty = async (email) => {
     .then((response) => response.text())
     .then((response) => response);
   return response;
-};
+}
 
-exports.checkForParty = async (email) => {
+export async function checkForParty(email) {
   const response = fetch(`http://localhost:3001/users/info/party/${email}`)
     .then((response) => {
       if(response.status === 200)
@@ -42,4 +42,4 @@ exports.checkForParty = async (email) => {
       return false;
     });
   return response;
-};
+}
