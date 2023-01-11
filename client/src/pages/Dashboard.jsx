@@ -17,8 +17,8 @@ function Dashboard() {
   function handleShare() {
     if (navigator.share) {
       navigator.share({
-        title: 'WebShare API Demo',
-        url: `http://localhost:3000/adder/${id}`
+        title: 'FrameIt - Room',
+        url: `https://frame-it.vercel.app/dashboard/${id}`
       }).then(() => {
         console.log('Thanks for sharing!');
       })
