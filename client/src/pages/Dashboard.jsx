@@ -3,7 +3,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { createOwner, createParty, checkForParty, deleteParty } from '../ApiServices';
+import {
+  createOwner,
+  createParty,
+  checkForParty,
+  deleteParty,
+} from '../ApiServices';
 import { QRCodeSVG } from 'qrcode.react';
 import Navbar from '../components/Navbar';
 import '../styles/Dashboard.css';
@@ -44,51 +49,53 @@ function Dashboard() {
   };
   const handleDelete = async () => {
     const done = await deleteParty(partyId);
-    if(done == 'Not Found') {
+    if (done == 'Not Found') {
       return;
     }
-    setPartyId('')
+    setPartyId('');
     return;
   };
 
   return (
-    <div className="dashboardWrapper">
-      <Navbar></Navbar>
-      <div className="firstHalfDash">
-        {isAuthenticated ? (
-          <div className="hello"> Hello, {user.given_name} ! </div>
-        ) : (
-          ''
-        )}
-        {isAuthenticated ? (
-          partyId ? (
-            <div className='dashButtons'>
-              <button className="mainButton" onClick={handleRedirect}>
-                GO TO UR PARTY
-              </button>
-              <button className="mainButton" onClick={handleDelete}>
-                DELETE CURRENT PARTY
-              </button>
-            </div>
+    <div className="App">
+      <div className="dashboardWrapper">
+        <Navbar></Navbar>
+        <div className="firstHalfDash">
+          {isAuthenticated ? (
+            <div className="hello"> Hello, {user.given_name} ! </div>
           ) : (
-            <button onClick={handleCreate} className="logButton">
-              CREATE A PARTY 📸
-            </button>
-          )
+            ''
+          )}
+          {isAuthenticated ? (
+            partyId ? (
+              <div className="dashButtons">
+                <button className="mainButton" onClick={handleRedirect}>
+                  GO TO UR PARTY
+                </button>
+                <button className="mainButton" onClick={handleDelete}>
+                  DELETE CURRENT PARTY
+                </button>
+              </div>
+            ) : (
+              <button onClick={handleCreate} className="logButton">
+                CREATE A PARTY 📸
+              </button>
+            )
+          ) : (
+            ''
+          )}
+        </div>
+        <div className="secondHalfDash"></div>
+        {isAuthenticated ? (
+          <div className="navButton" onClick={logout}>
+            <button className="logButton">LOGOUT</button>
+          </div>
         ) : (
-          ''
+          <div className="navButton" onClick={() => loginWithRedirect()}>
+            <button className="logButton">LOGIN</button>
+          </div>
         )}
       </div>
-      <div className="secondHalfDash"></div>
-      {isAuthenticated ? (
-        <div className="navButton" onClick={logout}>
-          <button className="logButton">LOGOUT</button>
-        </div>
-      ) : (
-        <div className="navButton" onClick={() => loginWithRedirect()}>
-          <button className="logButton">LOGIN</button>
-        </div>
-      )}
     </div>
   );
 }
