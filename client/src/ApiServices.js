@@ -43,3 +43,16 @@ export async function checkForParty(email) {
     });
   return response;
 }
+
+export async function deleteParty(id) {
+  const response = fetch(`http://localhost:3001/party`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({id}),
+  })
+    .then((response) => response.text())
+    .then((response) => response);
+  return response;
+}

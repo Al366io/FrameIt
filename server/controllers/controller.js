@@ -74,3 +74,21 @@ exports.checkIfUserHasParty = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+exports.deleteParty = async (req, res) => {
+  try {
+    const id = req.body.id;
+    await AuthTableOwner.update(
+      {
+        party_id: '',
+      },
+      {
+        where: { party_id: id },
+      }
+    );
+    res.send(true)
+    res.status(200)
+  } catch (error) {
+    res.sendStatus(404);
+  }
+}

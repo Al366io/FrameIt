@@ -20,15 +20,27 @@ function Home() {
     <div className="App">
       <div className="homeWrapper">
         <div className="bodyWrapper">
-          <div className="logo">
-            <img
-              className="logoImg"
-              src={process.env.PUBLIC_URL + '/assets/frameit.png'}
-              alt="img"
-            ></img>
+          <div className="terrence">
+            <div className="logo">
+              <img
+                className="logoImg"
+                src={process.env.PUBLIC_URL + '/assets/FRAMEIT_icon.png'}
+                alt="img"
+              ></img>
+            </div>
+            <div className="slogan">
+              <h1 className="removeDefaultStyling"> Frame It </h1>
+              <h2 className="removeDefaultStyling"> Share It </h2>
+              <button onClick={() => loginWithRedirect()} className="logButton">
+                LOGIN
+              </button>
+            </div>
           </div>
-          <div className="navButton" onClick={() => loginWithRedirect()}>
-            <button className="logButton">LOGIN</button>
+          <div className="infoApp">
+            <span>Create a Party</span>
+            <span>Send everybody the link</span>
+            <span>Let people send photos in real time</span>
+            <span>Enjoy your memories</span>
           </div>
         </div>
       </div>

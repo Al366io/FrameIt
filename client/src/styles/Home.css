@@ -9,47 +9,61 @@
   display: flex;
   flex-direction: row;
   margin: 2%;
-  justify-content: space-between;
-  background-color: beige;
+  justify-content: center;
+  align-items: center;
+  background: none;
   /* height: 12vh; */
-  border-radius: 10px;
 }
 
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5% 0 5%;
-  width: 50%;
+  margin: 70px 10px 30px 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .logo {
+    margin: 15% 5% 7% 5%;
+  }
+  .logoImg {
+    width: 75%;
+  }
 }
 
 .navButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5% 0 5%;
+  margin: 0 5px 25px 5px;
 }
 
 .bodyWrapper {
-  height: 100vh;
   display: flex;
+  height: 100vh;
+  justify-content: space-around;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 30px;
   background: rgba(154, 70, 169, 0.492);
   background: linear-gradient(
-    -45deg,
-    rgb(202, 118, 174) 0%,
-    rgb(130, 74, 202) 65%,
-    rgb(161, 87, 210) 83%
+    -25deg,
+    rgb(255, 233, 247) 12%,
+    rgb(238, 226, 255) 48%,
+    rgb(234, 217, 238) 83%
   );
 }
 
-ul.list {
-  margin: 0;
-}
-
 .firstHalf {
+  height: 38vh;
+  margin: 2%;
+  background: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.firstHalfDash {
   height: 38vh;
   margin: 2%;
   background: none;
@@ -71,9 +85,15 @@ ul.list {
   background: none;
   border-radius: 10px;
 }
-
-.logoImg {
-  width: 100%;
+.secondHalfDash {
+  height: 32vh;
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border-radius: 10px;
 }
 
 .createParty {
@@ -88,10 +108,33 @@ ul.list {
 
 .logButton {
   color: white;
-  padding: 15px;
-  border-radius: 10px;
+  font-weight: 00;
+  letter-spacing: 3px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 30px;
   border: none;
-  font-size: 130%;
-  background-color: rgb(152, 152, 255);
+  font-size: 90%;
+  background: rgb(129, 57, 209);
+  background: linear-gradient(
+    90deg,
+    rgba(129, 57, 209, 1) 0%,
+    rgba(223, 145, 243, 1) 100%
+  );
   margin: 15px;
+}
+
+.slogan {
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.infoApp {
+  gap: 7px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

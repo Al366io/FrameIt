@@ -57,11 +57,12 @@ function PartyRoomOwner() {
         <div className="qrWrap">
           <h3 className="removeDefaultStyling">Room #{id}</h3>
           <QRCodeSVG
+            bgColor='transparent'
             id="dash-qr"
             size="130px"
             value={`http://localhost:3000/party/${id}/ph`}
           />
-          <button className="buttonShare" onClick={handleShare}>
+          <button className="mainButton" onClick={handleShare}>
             {canShare ? (
               <span>SHARE</span>
             ) : !copied ? (

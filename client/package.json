@@ -38,5 +38,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-html5-camera-photo": "^1.5.1",
+    "react-html5-camera-photo": "^1.5.11"
   }
 }
