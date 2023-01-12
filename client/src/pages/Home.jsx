@@ -11,9 +11,11 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate(`/dashboard`);
-    }
+    setTimeout(() => {
+      if (isAuthenticated) {
+        navigate(`/dashboard`);
+      }
+    }, 3000);
   });
 
   return (
