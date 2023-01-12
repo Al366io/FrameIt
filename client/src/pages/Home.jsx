@@ -34,6 +34,7 @@ function Home() {
               <button onClick={() => loginWithPopup()} className="logButton">
                 LOGIN
               </button>
+              <input type="file" accept="image/*" capture="camera" />
             </div>
           </div>
           <div className="infoApp">
