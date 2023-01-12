@@ -28,7 +28,10 @@ function PartyRoomPH() {
   };
 
   function sendIt() {
-    //
+    const input = document.getElementById('foto');
+    input.files[0] = null;
+    setSomething(false)
+    setFileUploaded(false)
   }
 
   function toggleCamera() {
@@ -55,8 +58,6 @@ function PartyRoomPH() {
         {' '}
         ROOM #{id}
         <form
-          method="post"
-          encType="multipart/form-data"
           id="formSend"
           onSubmit={sendIt}
         >
