@@ -10,7 +10,7 @@ root.render(
 <Auth0Provider
     domain="dev-1qkrqe1l7lkx2qt6.us.auth0.com"
     clientId="Gse5squkieYkvFUOozcxIwnDxnPxwAAH"
-    redirectUri={window.location.origin}
+    redirectUri="https://frame-it.vercel.app/dashboard"
   >
     <App />
   </Auth0Provider>,
