@@ -11,12 +11,9 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log(isAuthenticated);
-      if (isAuthenticated) {
-        navigate(`/dashboard`);
-      }
-    }, 3000);
+    if (isAuthenticated) {
+      navigate(`/dashboard`);
+    }
   });
 
   return (
@@ -34,7 +31,7 @@ function Home() {
             <div className="slogan">
               <h1 className="removeDefaultStyling"> Frame It </h1>
               <h2 className="removeDefaultStyling"> Share It </h2>
-              <button onClick={() => loginWithRedirect()} className="logButton">
+              <button onClick={() => loginWithPopup()} className="logButton">
                 LOGIN
               </button>
             </div>
