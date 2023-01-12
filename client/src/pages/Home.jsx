@@ -12,6 +12,7 @@ function Home() {
 
   useEffect(() => {
     setTimeout(() => {
+      console.log(isAuthenticated);
       if (isAuthenticated) {
         navigate(`/dashboard`);
       }
