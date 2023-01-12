@@ -28,10 +28,11 @@ function Dashboard() {
       }
     }
     fetchData();
-
-    if (!isAuthenticated) {
-      navigate(`/`);
-    }
+    setTimeout(() => {
+      if (!isAuthenticated) {
+        navigate(`/`);
+      }
+    }, 500);
   }, []);
 
   const handleCreate = async (e) => {
