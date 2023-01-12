@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 function Home() {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function Home() {
             <div className="slogan">
               <h1 className="removeDefaultStyling"> Frame It </h1>
               <h2 className="removeDefaultStyling"> Share It </h2>
-              <button onClick={() => loginWithRedirect()} className="logButton">
+              <button onClick={() => loginWithPopup()} className="logButton">
                 LOGIN
               </button>
             </div>
