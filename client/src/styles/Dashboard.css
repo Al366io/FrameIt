@@ -3,6 +3,13 @@
   width: 100vw;
   display: flex;
   flex-direction: column;
+  background: rgba(154, 70, 169, 0.492);
+  background: linear-gradient(
+    -45deg,
+    rgb(202, 118, 174) 0%,
+    rgb(130, 74, 202) 65%,
+    rgb(161, 87, 210) 83%
+  );
 }
 
 .removeDefaultStyling {

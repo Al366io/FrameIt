@@ -9,10 +9,9 @@
   display: flex;
   flex-direction: row;
   margin: 2%;
-  width: 95vw;
   justify-content: space-between;
   background-color: beige;
-  height: 12%;
+  /* height: 12vh; */
   border-radius: 10px;
 }
 
@@ -22,7 +21,6 @@
   align-items: center;
   margin: 0 5% 0 5%;
   width: 50%;
-  height: 100%;
 }
 
 .navButton {
@@ -33,17 +31,11 @@
 }
 
 .bodyWrapper {
-  height: 84vh;
-}
-
-ul.list {
-  margin: 0;
-}
-
-.firstHalf {
-  height: 50%;
-  width: 95vw;
-  margin: 2%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: rgba(154, 70, 169, 0.492);
   background: linear-gradient(
     -45deg,
@@ -51,6 +43,16 @@ ul.list {
     rgb(130, 74, 202) 65%,
     rgb(161, 87, 210) 83%
   );
+}
+
+ul.list {
+  margin: 0;
+}
+
+.firstHalf {
+  height: 38vh;
+  margin: 2%;
+  background: none;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -59,21 +61,14 @@ ul.list {
 }
 
 .secondHalf {
-  height: 50%;
-  width: 95vw;
+  height: 50vh;
   margin: 2%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   height: 50%;
-  background: rgb(237, 130, 255);
-  background: linear-gradient(
-    -330deg,
-    rgba(237, 130, 255, 1) 0%,
-    rgba(144, 97, 207, 1) 65%,
-    rgba(134, 87, 210, 1) 83%
-  );
+  background: none;
   border-radius: 10px;
 }
 
@@ -84,8 +79,19 @@ ul.list {
 .createParty {
   color: white;
   height: 13%;
+  padding: 0 15px 0 15px;
   border-radius: 10px;
   border: none;
   font-size: 130%;
   background-color: rgb(152, 152, 255);
+}
+
+.logButton {
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 130%;
+  background-color: rgb(152, 152, 255);
+  margin: 15px;
 }

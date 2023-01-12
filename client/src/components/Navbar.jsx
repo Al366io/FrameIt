@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from "react-router-dom";
+import '../styles/Home.css';
 
 function Navbar() {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -22,11 +23,11 @@ function Navbar() {
       </div>
       {isAuthenticated ? (
         <div className="navButton" onClick={logout}>
-          LOGOUT
+          <button className="logButton">LOGOUT</button>
         </div>
       ) : (
         <div className="navButton" onClick={() => loginWithRedirect()}>
-          LOGIN
+          <button className="logButton">LOGIN</button>
         </div>
       )}
     </div>
