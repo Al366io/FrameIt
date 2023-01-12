@@ -12,10 +12,12 @@ import ImagePreview from '../components/ImagePreview';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
+  const fileReader = new FileReader();
   const { id } = useParams();
   const [dataUri, setDataUri] = useState('');
   const [openCamera, setOpenCamera] = useState(false);
-  const [fileUploaded, setFileUploaded] = useState(false)
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [something, setSomething] = useState('');
   const handleTakePhoto = async (dataUri) => {
     // if (dataUri) {
     //   setPhoto(dataUri);
@@ -34,11 +36,17 @@ function PartyRoomPH() {
   }
 
   function handleChange() {
-    const input = document.getElementById('foto')
-    let buff = input.files[0]
-    if(buff) {
-      setFileUploaded(true)
-    } else setFileUploaded(false)
+    const input = document.getElementById('foto');
+    let buff = input.files[0];
+    if (buff) {
+      setFileUploaded(true);
+      const imgPreview = document.getElementsByClassName('imagePreview');
+      fileReader.readAsDataURL(buff);
+      fileReader.addEventListener('load', function () {
+        console.log('done');
+        setSomething(this.result);
+      });
+    } else setFileUploaded(false);
   }
 
   return (
@@ -66,12 +74,22 @@ function PartyRoomPH() {
             accept="image/*"
             onChange={handleChange}
           />
-          { fileUploaded ? 
-          <button className="logButton" type="submit">
-            SEND
-          </button> : ''}
+          {fileUploaded ? (
+            <>
+              <button className="logButton" type="submit">
+                SEND
+              </button>
+            </>
+          ) : (
+            ''
+          )}
         </form>
       </div>
+        <div className="secondHalf">
+          <div className="imagePreview">
+            <img className="imagePreviewActually" src={something}></img>
+          </div>
+        </div>
     </div>
   );
 }
