@@ -25,6 +25,10 @@ function PartyRoomPH() {
     // }
   };
 
+  function sendIt() {
+    //
+  }
+
   function toggleCamera() {
     setOpenCamera(!openCamera);
   }
@@ -34,21 +38,20 @@ function PartyRoomPH() {
       <div className="firstHalf">
         {' '}
         ROOM #{id}
-        <button onClick={toggleCamera} className="logButton">
+        {/* <button onClick={toggleCamera} className="logButton">
           Open Camera 📸
-        </button>
-      </div>
-      <div className="secondHalf">
-        {' '}
-        {openCamera ? (
-          dataUri ? (
-            <ImagePreview dataUri={dataUri} />
-          ) : (
-            <Camera isMaxResolution={true} sizeFactor={0.5} onTakePhoto={handleTakePhoto} />
-          )
-        ) : (
-          ''
-        )}
+        </button> */}
+        <form method="post" enctype="multipart/form-data" id="formSend" onSubmit={sendIt}>
+          <div className='fotoWrap'>
+          <label for="foto" class="customFoto">
+            📸
+          </label>
+          <label>Click to take Photo</label>
+          </div>
+          <input id="foto" type="file" name="image" capture="enviroment" accept="image/*"/>
+          <button className="logButton" type="submit">SEND</button>
+          {/* <button class="apriCamera" onclick={document.getElementById('foto').click()}> 📷 </button> */}
+        </form>
       </div>
     </div>
   );
