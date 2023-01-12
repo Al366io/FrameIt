@@ -1,5 +1,7 @@
 const { AuthTableOwner } = require('../models/model');
-const { generateRandomString } = require('../helpers/helpers');
+const { generateRandomString, ensureExists } = require('../helpers/helpers');
+const path = require('path');
+const fs = require('fs');
 
 async function createIfNotThere(user) {
   const alreadyInDb = await AuthTableOwner.findOne({
@@ -86,9 +88,29 @@ exports.deleteParty = async (req, res) => {
         where: { party_id: id },
       }
     );
-    res.send(true)
-    res.status(200)
+    res.send(true);
+    res.status(200);
   } catch (error) {
     res.sendStatus(404);
   }
-}
+};
+
+exports.saveIncomingPhoto = (req, res) => {
+  try {
+    const id = req.params.id;
+    const { file } = req.files;
+    // Move the uploaded image to our upload folder
+    let myPath = path.join(__dirname, '../uploads/' + id);
+    ensureExists(myPath, function(err) {
+      if (err) {
+        console.log(err);
+      }
+    })
+    file.mv(myPath + '/' + file.name);
+    // All good
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};

@@ -56,3 +56,19 @@ export async function deleteParty(id) {
     .then((response) => response);
   return response;
 }
+
+export async function sendImage(data, id) {
+  const formData = new FormData();
+  formData.append('file', data);
+  const response = fetch(`http://localhost:3001/party/add/${id}`, {
+    method: 'POST',
+    // headers: {
+    //   // 'Content-Type': 'application/json',
+    // },
+    body: formData,
+  }).then(async (res) => {
+    const result = await res.text();
+    return result
+  });
+  return response;
+}

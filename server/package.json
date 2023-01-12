@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-fileupload": "^1.4.0",
     "pg": "^8.8.0",
+    "save-dev": "^0.0.1-security",
     "sequelize": "^6.28.0"
   }
 }
