@@ -34,7 +34,7 @@ function Home() {
             <div className="slogan">
               <h1 className="removeDefaultStyling"> Frame It </h1>
               <h2 className="removeDefaultStyling"> Share It </h2>
-              <button onClick={() => loginWithPopup()} className="logButton">
+              <button onClick={() => loginWithRedirect()} className="logButton">
                 LOGIN
               </button>
             </div>
