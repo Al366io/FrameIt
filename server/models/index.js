@@ -1,8 +1,18 @@
 const Sequelize = require('sequelize');
-sequelize = new Sequelize(
-  'postgres://postgres:Gvs8wteUI5vB8gm@frameit-db.internal:5432',
+const { AuthTableOwner } = require('./model');
+const sequelize = new Sequelize(
+  process.env.DATABASE_URL,
   {
-    logging: false
+    dialect: 'postgres',
+    logging: false,
+    dialectOptions: {
+      // Your pg options here
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      },
+      client_encoding: 'auto'
+    }
   }
 );
 
