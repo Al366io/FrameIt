@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 sequelize = new Sequelize(
-  'postgresql://localhost:5432/frameitdb',
+  'postgresql://frameit:lol123!@localhost:5432/frameitdb',
   {
     logging: false
   }
