@@ -31,7 +31,7 @@ function PartyRoomOwner() {
       navigator
         .share({
           title: 'FrameIt - Room',
-          url: `http://localhost:3000/party/${id}/ph`,
+          url: `https://frame-it.vercel.app/party/${id}/ph`,
         })
         .then(() => {
           console.log('Thanks for sharing!');
@@ -43,7 +43,7 @@ function PartyRoomOwner() {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/party/${id}/ph`);
+    navigator.clipboard.writeText(`https://frame-it.vercel.app/party/${id}/ph`);
     setCopied(true);
     setTimeout(() => {
       setCopied(false)
@@ -60,7 +60,7 @@ function PartyRoomOwner() {
             bgColor='transparent'
             id="dash-qr"
             size="130px"
-            value={`http://localhost:3000/party/${id}/ph`}
+            value={`https://frame-it.vercel.app/party/${id}/ph`}
           />
           <button className="mainButton" onClick={handleShare}>
             {canShare ? (

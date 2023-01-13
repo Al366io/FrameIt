@@ -12,12 +12,8 @@ global.io = socketIo(server, {
     origin: 'http://localhost:3000',
   },
 }); //in case server and client run on different urls
-
-let corsOptions = {
-  origin: 'https://frame-it.vercel.app/'
-}
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(
   fileUpload({
     limits: {
