@@ -14,7 +14,7 @@ global.io = socketIo(server, {
 }); //in case server and client run on different urls
 
 let corsOptions = {
-  origin: 'https://frame-it.vercel.app',
+  origin: 'https://frame-it.vercel.app/',
   origin: 'http://localhost:3000'
 }
 app.use(express.json());
