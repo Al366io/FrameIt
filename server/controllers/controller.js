@@ -101,11 +101,17 @@ exports.saveIncomingPhoto = (req, res) => {
     const { file } = req.files;
     // Move the uploaded image to our upload folder
     let myPath = path.join(__dirname, '../uploads/' + id);
+    let isErr = false;
     ensureExists(myPath, function(err) {
       if (err) {
         console.log(err);
+        isErr = true;
       }
     })
+    if(isErr) {
+      res.sendStatus(500)
+      return;
+    }
     file.mv(myPath + '/' + file.name);
     // All good
     res.sendStatus(200);

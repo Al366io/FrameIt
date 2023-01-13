@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { sendImage } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
@@ -25,12 +25,10 @@ function PartyRoomPH() {
   };
 
   async function sendIt(e) {
-    // e.preventDefault();
+    e.preventDefault();
     const input = document.getElementById('foto');
-
     await sendImage(input.files[0], id);
-
-    input.files = null;
+    input.value = null;
     setSomething(false);
     setFileUploaded(false);
   }
