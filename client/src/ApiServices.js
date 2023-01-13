@@ -2,7 +2,7 @@ export async function createOwner(user_email) {
   const data = {
     email: user_email,
   };
-  const response = await fetch(`http://localhost:3001/users/owner`, {
+  const response = await fetch(`http://104.248.254.204:3001/users/owner`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export async function createParty(email) {
   const data = {
     email: email,
   };
-  const response = fetch(`http://localhost:3001/users/party/create`, {
+  const response = fetch(`http://104.248.254.204:3001/users/party/create`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export async function createParty(email) {
 }
 
 export async function checkForParty(email) {
-  const response = fetch(`http://localhost:3001/users/info/party/${email}`)
+  const response = fetch(`http://104.248.254.204:3001/users/info/party/${email}`)
     .then((response) => {
       if(response.status === 200)
         return response.text();
@@ -45,7 +45,7 @@ export async function checkForParty(email) {
 }
 
 export async function deleteParty(id) {
-  const response = fetch(`http://localhost:3001/party`, {
+  const response = fetch(`http://104.248.254.204:3001/party`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export async function deleteParty(id) {
 export async function sendImage(data, id) {
   const formData = new FormData();
   formData.append('file', data);
-  const response = fetch(`http://localhost:3001/party/add/${id}`, {
+  const response = fetch(`http://104.248.254.204:3001/party/add/${id}`, {
     method: 'POST',
     // headers: {
     //   // 'Content-Type': 'application/json',
