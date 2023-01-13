@@ -109,6 +109,7 @@ exports.saveIncomingPhoto = (req, res) => {
       }
     })
     if(isErr) {
+      console.log('aaa');
       res.sendStatus(500)
       return;
     }
@@ -116,6 +117,7 @@ exports.saveIncomingPhoto = (req, res) => {
     // All good
     res.sendStatus(200);
   } catch (error) {
+    console.log(error);
     res.sendStatus(500);
   }
 };

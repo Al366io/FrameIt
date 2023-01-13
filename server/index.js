@@ -17,7 +17,7 @@ app.use(cors());
 app.use(
   fileUpload({
     limits: {
-      fileSize: 8000000, // 8MB
+      fileSize: 20000000, // 8MB
     },
     abortOnLimit: true,
   })

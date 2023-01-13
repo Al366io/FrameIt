@@ -28,6 +28,7 @@ function PartyRoomPH() {
     e.preventDefault();
     const input = document.getElementById('foto');
     await sendImage(input.files[0], id);
+    alert('Sent :D');
     input.value = null;
     setSomething(false);
     setFileUploaded(false);
@@ -40,7 +41,6 @@ function PartyRoomPH() {
       setFileUploaded(true);
       fileReader.readAsDataURL(buff);
       fileReader.addEventListener('load', function () {
-        console.log('done');
         setSomething(this.result);
       });
     } else setFileUploaded(false);
