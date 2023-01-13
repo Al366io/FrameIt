@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-const { AuthTableOwner } = require('./model');
 const sequelize = new Sequelize(
-  process.env.DATABASE_URL,
+  'postgres://frameit:lol123!@localhost:5432/frameitdb',
   {
     dialect: 'postgres',
     logging: false,

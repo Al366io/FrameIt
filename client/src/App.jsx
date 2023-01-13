@@ -15,12 +15,6 @@ function App() {
           <Route path="/party/:id" element={<PartyRoomOwner />} />
           <Route path="/party/:id/ph" element={<JoinRoom />} />
           <Route path="/party/:id/ph/add" element={<PartyRoomPH />} />
-          {/* <Route path="/adder/:id" element={<Adder />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/owner" element={<Owner />} />
-          <Route path="/adding/:id" element={<Adding />} />
-          <Route path="/dashboard/:id" element={<Dashboard />} />
-          <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
