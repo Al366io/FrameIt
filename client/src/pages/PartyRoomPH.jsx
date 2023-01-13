@@ -38,6 +38,7 @@ function PartyRoomPH() {
     const input = document.getElementById('foto');
     let buff = input.files[0];
     if (buff) {
+      alert('size:', input.files[0].size)
       setFileUploaded(true);
       fileReader.readAsDataURL(buff);
       fileReader.addEventListener('load', function () {
