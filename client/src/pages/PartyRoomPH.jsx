@@ -27,7 +27,7 @@ function PartyRoomPH() {
   async function sendIt(e) {
     e.preventDefault();
     const input = document.getElementById('foto');
-    alert('size:', input.files[0].size)
+    alert('size:' + input.files[0].size)
     await sendImage(input.files[0], id);
     alert('Sent :D');
     input.value = null;
