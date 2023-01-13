@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
     "pg": "^8.8.0",
     "save-dev": "^0.0.1-security",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "socket.io": "^4.5.4"
   }
 }
