@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@types/react-html5-camera-photo": "^1.5.1",
+    "image-conversion": "^2.1.1",
     "react-html5-camera-photo": "^1.5.11"
   }
 }

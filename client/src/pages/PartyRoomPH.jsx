@@ -5,6 +5,7 @@ import { sendImage } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import 'react-html5-camera-photo/build/css/index.css';
+import {compress, compressAccurately} from 'image-conversion';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
@@ -27,7 +28,12 @@ function PartyRoomPH() {
   async function sendIt(e) {
     e.preventDefault();
     const input = document.getElementById('foto');
-    alert('size:' + input.files[0].size)
+    // if (input.files[0].size / 1024 / 1024 )
+    // const res = await imageConversion.compressAccurately(file,1000)
+    console.log(input.files[0].size);
+    console.log(' ' + (input.files[0].size/1024));
+    console.log(' ' + (input.files[0].size/1024/1024));
+    // alert('size before:' + input.files[0].size / 1024 / 1024 + '  Size after: ' + )
     await sendImage(input.files[0], id);
     alert('Sent :D');
     input.value = null;
