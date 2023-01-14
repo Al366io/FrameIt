@@ -40,10 +40,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-html5-camera-photo": "^1.5.1",
-    "eslint": "^8.31.0",
-    "eslint-plugin-react": "^7.32.0",
-    "image-conversion": "^2.1.1",
-    "react-html5-camera-photo": "^1.5.11"
+    "image-conversion": "^2.1.1"
   }
 }
