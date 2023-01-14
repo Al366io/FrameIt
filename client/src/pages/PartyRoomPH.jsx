@@ -108,10 +108,10 @@ function PartyRoomPH() {
         </form>
       </div>
       <div className="secondHalf">
-        {fileUploaded ? (
+        {photoTaken ? (
           <>
             <div className="imagePreview">
-              <img className="imagePreviewActually" src={something}></img>
+              <img className="imagePreviewActually" src={photoTaken}></img>
             </div>
             <button className="logButton" onClick={downloadIt}>
               DOWNLOAD
