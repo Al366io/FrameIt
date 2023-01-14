@@ -5,7 +5,7 @@ import { sendImage } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import 'react-html5-camera-photo/build/css/index.css';
-import { compressAccurately } from 'image-conversion';
+import { compress, compressAccurately, downloadFile } from 'image-conversion';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
@@ -13,32 +13,64 @@ function PartyRoomPH() {
   const { id } = useParams();
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
+  const [photoTaken, setPhotoTaken] = useState({})
+
+  const generateRandomString = function (length) {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  };
 
   async function sendIt(e) {
     e.preventDefault();
-    const input = document.getElementById('foto');
-    let sizeInMb = Math.trunc(input.files[0].size/1024/1024);
-    let compressed;
-    if (sizeInMb >= 3) {
-      compressed = await compressAccurately(input.files[0],3000) // compress to 3MB if it's bigger
-      console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
-    }
-    compressed ? await sendImage(compressed, id) : await sendImage(input.files[0], id);
+    const input = document.getElementById('foto').files[0];
+    // input.name = await generateRandomString(9);
+    // console.log(input.name);
+    // let sizeInMb = Math.trunc(input.size/1024/1024);
+    // let compressed;
+    // if (sizeInMb >= 3) {
+    //   compressed = await compressAccurately(input,3000) // compress to 3MB if it's bigger
+    //   console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
+    // }
+    // if(!compressed) {
+    //   compressed = await compress(input, 1);
+    // }
+    await sendImage(photoTaken, id)
     alert('Sent :D');
     input.value = null;
     setSomething(false);
     setFileUploaded(false);
   }
 
-  function handleChange() {
+  async function downloadIt() {
+    downloadFile()
+  }
+
+  async function handleChange() {
+    let compressed;
     const input = document.getElementById('foto');
-    let buff = input.files[0];
-    if (buff) {
+    let photo = input.files[0];
+    if (photo) {
       setFileUploaded(true);
-      fileReader.readAsDataURL(buff);
+      fileReader.readAsDataURL(photo);
       fileReader.addEventListener('load', function () {
         setSomething(this.result);
       });
+      let sizeInMb = Math.trunc(photo.size/1024/1024);
+      if (sizeInMb >= 3) {
+        compressed = await compressAccurately(input,3000) // compress to 3MB if it's bigger
+        console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
+      }
+      if(!compressed) {
+        compressed = await compress(input, 1);
+      }
+      setPhotoTaken(compressed);
+      console.log(photo.name);
     } else setFileUploaded(false);
   }
 
