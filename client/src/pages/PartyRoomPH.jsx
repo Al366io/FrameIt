@@ -20,7 +20,7 @@ function PartyRoomPH() {
     let sizeInMb = Math.trunc(input.files[0].size/1024/1024);
     let compressed;
     if (sizeInMb >= 3) {
-      compressed = await compressAccurately(input,3000) // compress to 3MB if it's bigger
+      compressed = await compressAccurately(input.files[0],3000) // compress to 3MB if it's bigger
       console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
     }
     compressed ? await sendImage(compressed, id) : await sendImage(input.files[0], id);
