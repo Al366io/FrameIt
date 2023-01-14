@@ -114,7 +114,7 @@ function PartyRoomPH() {
             <div className="imagePreview">
               <img className="imagePreviewActually" src={something}></img>
             </div>
-            <button className="logButton" onClick={downloadIt()}>
+            <button className="logButton" onClick={downloadIt}>
               DOWNLOAD
             </button>
           </>
