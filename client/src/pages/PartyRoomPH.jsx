@@ -4,7 +4,6 @@ import { Navigate, useParams } from 'react-router-dom';
 import { sendImage } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
-import 'react-html5-camera-photo/build/css/index.css';
 import { compress, compressAccurately, downloadFile } from 'image-conversion';
 
 // reachable at /party/:id/ph/add

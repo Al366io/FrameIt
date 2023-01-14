@@ -107,10 +107,9 @@ background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px;
-  border: solid;
 }
 
 .imagePreviewActually {
   width: 80%;
+  border-radius: 20px;
 }
