@@ -21,7 +21,7 @@ export async function createOwner(user_email) {
       },
       body: JSON.stringify(data),
     }).then((response) => response.text());
-    if (response.status.toString()[0] == 2) 
+    if (response.status == 204) 
       return 1
     else
       return 0
