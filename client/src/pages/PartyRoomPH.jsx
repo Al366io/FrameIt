@@ -13,12 +13,12 @@ function PartyRoomPH() {
   const { id } = useParams();
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
-  const [photoTaken, setPhotoTaken] = useState({})
+  const [photoTaken, setPhotoTaken] = useState({});
 
   const generateRandomString = function (length) {
-    let result = "";
+    let result = '';
     const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
     for (var i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
@@ -42,7 +42,7 @@ function PartyRoomPH() {
     // }
     console.log(photoTaken);
     console.log(photoTaken.name);
-    await sendImage(photoTaken, id)
+    await sendImage(photoTaken, id);
     alert('Sent :D');
     input.value = null;
     setSomething(false);
@@ -63,12 +63,14 @@ function PartyRoomPH() {
       fileReader.addEventListener('load', function () {
         setSomething(this.result);
       });
-      let sizeInMb = Math.trunc(photo.size/1024/1024);
+      let sizeInMb = Math.trunc(photo.size / 1024 / 1024);
       if (sizeInMb >= 3) {
-        compressed = await compressAccurately(photo,3000) // compress to 3MB if it's bigger
-        console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
+        compressed = await compressAccurately(photo, 3000); // compress to 3MB if it's bigger
+        console.log(
+          'size before:' + sizeInMb + '  Size after: ' + compressed.size
+        );
       }
-      if(!compressed) {
+      if (!compressed) {
         compressed = await compress(photo, 1);
       }
       setPhotoTaken(compressed);
@@ -108,9 +110,14 @@ function PartyRoomPH() {
       </div>
       <div className="secondHalf">
         {fileUploaded ? (
-          <div className="imagePreview">
-            <img className="imagePreviewActually" src={something}></img>
-          </div>
+          <>
+            <div className="imagePreview">
+              <img className="imagePreviewActually" src={something}></img>
+            </div>
+            <button className="logButton" onClick={downloadIt()}>
+              DOWNLOAD
+            </button>
+          </>
         ) : (
           ''
         )}
