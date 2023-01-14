@@ -20,7 +20,7 @@ export async function createOwner(user_email) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    }).then((response) => response.text());
+    }).then((response) => response);
     console.log(response.status);
     if (response.status == 204) 
       return 1
