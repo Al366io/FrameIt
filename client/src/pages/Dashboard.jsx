@@ -24,7 +24,7 @@ function Dashboard() {
     async function fetchData() {
       if (isAuthenticated) {
         const up = await createOwner(user.email);
-        setIsUp[up];
+        setIsUp(up);
         if (isUp) {
           const partyId = await checkForParty(user.email);
           if (partyId) setPartyId(partyId);
