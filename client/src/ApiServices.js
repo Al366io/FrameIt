@@ -68,17 +68,21 @@ export async function deleteParty(id) {
   return response;
 }
 
-export async function sendImage(data, id) {
+export async function sendImage(data) {
   const formData = new FormData();
-  formData.append('file', data, generateRandomString(8));
-  const response = fetch(`https://www.frameit.social/party/add/${id}`, {
+  formData.append('file', data, generateRandomString(10));
+  formData.append('upload_preset', 'frameit')
+
+  const response = fetch(`https://api.cloudinary.com/dkqmqt1gr/image/upload`, {
     method: 'POST',
     // headers: {
     //   // 'Content-Type': 'application/json',
     // },
     body: formData,
   }).then(async (res) => {
-    const result = await res.text();
+    console.log(res);
+    const result = await res.data['secure_url'];
+    console.log(result);
     return result
   });
   return response;

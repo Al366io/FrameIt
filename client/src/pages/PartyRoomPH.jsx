@@ -28,8 +28,6 @@ function PartyRoomPH() {
     // if(!compressed) {
     //   compressed = await compress(input, 1);
     // }
-    console.log(photoTaken);
-    console.log(photoTaken.name);
     await sendImage(photoTaken, id);
     alert('Sent :D');
     input.value = null;

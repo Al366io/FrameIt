@@ -50,6 +50,10 @@ function PartyRoomOwner() {
     }, 3000);
   };
 
+  const goToPh = () => {
+    navigate(`/party/${id}/ph`);
+  }
+
   return (
     <div className="dashboardWrapper">
       <Navbar></Navbar>
@@ -70,6 +74,9 @@ function PartyRoomOwner() {
             ) : (
               <span>COPIED ✅</span>
             )}
+          </button>
+          <button className="mainButton" onClick={goToPh}>
+            TAKE PICS FOR UR PARTY
           </button>
           <span></span>
         </div>
