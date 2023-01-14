@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { generateRandomString, sendImage } from '../ApiServices';
+import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, compressAccurately, downloadFile } from 'image-conversion';
@@ -17,22 +17,16 @@ function PartyRoomPH() {
   async function sendIt(e) {
     e.preventDefault();
     const input = document.getElementById('foto').files[0];
-    // input.name = await generateRandomString(9);
-    // console.log(input.name);
-    // let sizeInMb = Math.trunc(input.size/1024/1024);
-    // let compressed;
-    // if (sizeInMb >= 3) {
-    //   compressed = await compressAccurately(input,3000) // compress to 3MB if it's bigger
-    //   console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
-    // }
-    // if(!compressed) {
-    //   compressed = await compress(input, 1);
-    // }
-    await sendImage(photoTaken, id);
-    alert('Sent :D');
-    input.value = null;
-    setSomething(false);
-    setFileUploaded(false);
+    const url = await sendImage(photoTaken, id);
+    if (url) {
+      alert('Sent :D');
+      input.value = null;
+      setSomething(false);
+      setFileUploaded(false);
+      sendUrlToDb(url, id);
+    } else {
+      alert('something went wrong')
+    }
   }
 
   async function downloadIt() {
@@ -47,20 +41,11 @@ function PartyRoomPH() {
       if (!compressed) {
         compressed = await compress(photo, 0.2);
       }
-
       setFileUploaded(true);
       fileReader.readAsDataURL(compressed);
       fileReader.addEventListener('load', function () {
         setSomething(this.result);
       });
-      //let sizeInMb = Math.trunc(photo.size / 1024 / 1024);
-      // if (sizeInMb >= 3) {
-      //   compressed = await compressAccurately(photo, 3000); // compress to 3MB if it's bigger
-      //   console.log(
-      //     'size before:' + sizeInMb + '  Size after: ' + compressed.size
-      //   );
-      // }
-
       setPhotoTaken(compressed);
     } else setFileUploaded(false);
   }

@@ -1,4 +1,4 @@
-const { AuthTableOwner } = require('../models/model');
+const { AuthTableOwner, Party } = require('../models/model');
 const { generateRandomString, ensureExists } = require('../helpers/helpers');
 const path = require('path');
 
@@ -46,6 +46,11 @@ exports.createParty = async (req, res) => {
         where: { user_email: email },
       }
     );
+    const party = {
+      party_id: id,
+      pics: JSON.stringify([])
+    }
+    await Party.create(party);
     // res.status(204);
     res.send(id.toString());
   } catch (error) {
@@ -120,3 +125,34 @@ exports.saveIncomingPhoto = (req, res) => {
     res.sendStatus(500);
   }
 };
+
+exports.insertUrlInDb = (req, res) => {
+  // JSON.stringify([url,url,url,url])
+  try {
+    // take variables from body
+    const url = req.body.url;
+    const partyId = req.body.partyId
+    // search the party in the db to get the url array of the pics
+    const partyObj = await Party.findOne({
+      where: { party_id: partyId },
+    });
+    // parse the url string into an actual array
+    const picsArr = JSON.parse(partyObj.pics)
+    // push the new pic url into that
+    picsArr.push(url)
+    // update the record in the db 
+    await Party.update(
+      {
+        url: JSON.stringify(picsArr),
+      },
+      {
+        where: { party_id: partyId },
+      }
+    );
+    // all good
+    res.send(true);
+    res.status(200);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+}

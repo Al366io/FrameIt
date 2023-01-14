@@ -76,28 +76,24 @@ export async function sendImage(data) {
     body: formData,
   }).then(async (res) => {
     const result = await res.json();
-    console.log(result);
-    return result;
+    return result["secure_url"];
   });
   return response;
 }
 
-// const url = 'https://api.cloudinary.com/v1_1/demo/image/upload';
-
-// export async function seeend(file) {
-//   formData.append('file', data, generateRandomString(10));
-//   formData.append('upload_preset', 'frameit');
-
-//   const a = await fetch(url, {
-//     method: 'POST',
-//     body: formData,
-//   })
-//     .then((response) => {
-//       return response.text();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       return data
-//     });
-//   return a;
-// }
+export async function sendUrlToDb(url, id) {
+  const data = {
+    url: url,
+    partyId: id
+  };
+  const response = fetch(`https://www.frameit.social/party/upload`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.text())
+    .then((response) => response);
+  return response;
+}

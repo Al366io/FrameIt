@@ -18,6 +18,23 @@ const AuthTableOwner = sequelize.define('AuthTableOwner', {
   }
 })
 
+const Party = sequelize.define('Party', {
+  party_id: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
+  pics: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  }
+})
+
 const AuthTableUser = sequelize.define('AuthTableUser', {
   user_email: {
     type: DataTypes.STRING,
@@ -37,7 +54,8 @@ const AuthTableUser = sequelize.define('AuthTableUser', {
 
 async function synchronize() {
   await AuthTableOwner.sync(); 
+  await Party.sync();
   await AuthTableUser.sync(); 
 } synchronize();
 
-module.exports = {AuthTableOwner, AuthTableUser};
+module.exports = {Party, AuthTableOwner, AuthTableUser};
