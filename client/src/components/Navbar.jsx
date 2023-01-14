@@ -13,12 +13,14 @@ function Navbar() {
 
   return (
     <div className="navbar">
+      <a className='aLogo'>
       <img
         width={"180px"}
         onClick={handleGohome}
         src={process.env.PUBLIC_URL + '/assets/FRAMEIT_logo.png'}
         alt="img"
       ></img>
+      </a>
     </div>
   );
 }

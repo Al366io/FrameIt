@@ -138,3 +138,8 @@
   flex-direction: column;
   align-items: center;
 }
+
+.aLogo {
+  text-decoration: none;
+  cursor: pointer;
+}

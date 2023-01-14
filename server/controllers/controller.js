@@ -126,24 +126,27 @@ exports.saveIncomingPhoto = (req, res) => {
   }
 };
 
-exports.insertUrlInDb = (req, res) => {
+exports.insertUrlInDb = async (req, res) => {
   // JSON.stringify([url,url,url,url])
   try {
     // take variables from body
     const url = req.body.url;
     const partyId = req.body.partyId
+    console.log('Arrived pic for party' + partyId + ' url: ' + url);
     // search the party in the db to get the url array of the pics
     const partyObj = await Party.findOne({
       where: { party_id: partyId },
     });
+    console.log('Prev url arr is: ' + partyObj.pics);
     // parse the url string into an actual array
     const picsArr = JSON.parse(partyObj.pics)
     // push the new pic url into that
     picsArr.push(url)
+    console.log('New pics arr is: ' + picsArr);
     // update the record in the db 
     await Party.update(
       {
-        url: JSON.stringify(picsArr),
+        pics: JSON.stringify(picsArr),
       },
       {
         where: { party_id: partyId },

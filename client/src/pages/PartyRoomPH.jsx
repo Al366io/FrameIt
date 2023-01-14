@@ -5,6 +5,7 @@ import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, compressAccurately, downloadFile } from 'image-conversion';
+import Navbar from '../components/Navbar';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
@@ -52,6 +53,7 @@ function PartyRoomPH() {
 
   return (
     <div className="dashboardWrapper">
+      <Navbar></Navbar>
       <div className="firstHalf">
         {' '}
         ROOM #{id}
