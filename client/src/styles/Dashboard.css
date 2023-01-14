@@ -121,16 +121,18 @@
 }
 
 .gridContainer {
-  display: flex;
   flex-wrap: wrap;
   margin: -1rem -1rem;
   padding-bottom: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 2rem;
 }
 
 .gridItem {
-  position: relative;
+  width: 90%;
+  cursor: pointer;
   flex: 1 0 22rem;
   margin: 1rem;
-  color: #fff;
-  cursor: pointer;
+  position: relative;
 }
