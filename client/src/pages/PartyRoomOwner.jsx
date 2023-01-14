@@ -35,14 +35,15 @@ function PartyRoomOwner() {
 
     async function fetchSocketRoomId() {
       const socketRoomId = await getSocketRoomId(id);
-      console.log('room: ' + socketRoomId);
       socket.emit('join-room', socketRoomId);
     }
     fetchSocketRoomId();
 
     socket.on('pics', (data) => {
-      console.log(data);
-      setPhotos(data);
+      if (data[data.length] !== photos[photos.length]) {
+        setPhotos(data);
+        console.log(123);
+      }
     });
   }, []);
 
@@ -106,13 +107,13 @@ function PartyRoomOwner() {
               TAKE PICS FOR UR PARTY
             </button>
           </div>
-          <div>
+          <div className='gridContainer'>
             {!photos.length ? (
               <h3>No pics for now</h3>
             ) : (
               photos.map((pic, idx) => {
                 return (
-                  <img key={idx} src={pic}></img>
+                  <img className='gridItem' key={idx} src={pic}></img>
                 )
               })
             )}

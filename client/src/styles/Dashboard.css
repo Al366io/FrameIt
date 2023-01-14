@@ -113,3 +113,14 @@
   width: 80%;
   border-radius: 20px;
 }
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.gridItem {
+  width: 33%;
+  height: 33%;
+}

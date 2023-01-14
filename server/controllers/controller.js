@@ -54,7 +54,7 @@ exports.createParty = async (req, res) => {
     await Party.create(party);
     // here call the function that will set the interval to update this particular room
     this.triggerSocket(party.socket_room_id, id);
-    res.send(id.toString());
+    res.send(id);
     res.status(200);
   } catch (error) {
     console.log(error);
@@ -170,7 +170,7 @@ exports.getSocketRoom = async (req, res) => {
       where: { party_id: partyId },
     });
     res.status(200);
-    res.send(JSON.stringify(party.socket_room_id));
+    res.send(party.socket_room_id);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
