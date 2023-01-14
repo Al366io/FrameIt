@@ -1,4 +1,5 @@
 const express = require('express');
+const { startSetIntervals } = require("./controllers/controller");
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const router = require('./router');
@@ -37,6 +38,11 @@ io.on('connection', (socket) => {
     console.log(reason);
   });
 });
+
+// DELETE THIS IN FINAL PRODUCTION DEPLOY
+setTimeout(() => {
+  startSetIntervals()
+}, 5000);
 
 server.listen(port, () => {
   console.log(`Server is running on port ${port} - http://localhost:${port}`);

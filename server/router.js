@@ -6,6 +6,7 @@ const {
   deleteParty,
   saveIncomingPhoto,
   insertUrlInDb,
+  getSocketRoom,
 } = require('./controllers/controller');
 
 router.post('/users/owner', createOwner);
@@ -23,4 +24,6 @@ router.post('/party/add/:id', saveIncomingPhoto);
 // returns true or false
 router.post('/party/upload', insertUrlInDb)
 
+/**https://www.frameit.social/party/socketRoom/${id} */
+router.get('/party/socketRoom/:id', getSocketRoom)
 module.exports = router;

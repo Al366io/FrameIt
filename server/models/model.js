@@ -32,6 +32,10 @@ const Party = sequelize.define('Party', {
   pics: {
     type: DataTypes.TEXT,
     allowNull: true
+  },
+  socket_room_id: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 })
 

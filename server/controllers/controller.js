@@ -48,11 +48,14 @@ exports.createParty = async (req, res) => {
     );
     const party = {
       party_id: id,
-      pics: JSON.stringify([])
-    }
+      pics: JSON.stringify([]),
+      socket_room_id: generateRandomString(12),
+    };
     await Party.create(party);
-    // res.status(204);
+    // here call the function that will set the interval to update this particular room
+    this.triggerSocket(party.socket_room_id, id);
     res.send(id.toString());
+    res.status(200);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -106,15 +109,15 @@ exports.saveIncomingPhoto = (req, res) => {
     // Move the uploaded image to our upload folder
     let myPath = path.join(__dirname, '../uploads/' + id);
     let isErr = false;
-    ensureExists(myPath, function(err) {
+    ensureExists(myPath, function (err) {
       if (err) {
         console.log(err);
         isErr = true;
       }
-    })
-    if(isErr) {
+    });
+    if (isErr) {
       console.log('aaa');
-      res.sendStatus(500)
+      res.sendStatus(500);
       return;
     }
     file.mv(myPath + '/' + file.name);
@@ -131,7 +134,7 @@ exports.insertUrlInDb = async (req, res) => {
   try {
     // take variables from body
     const url = req.body.url;
-    const partyId = req.body.partyId
+    const partyId = req.body.partyId;
     console.log('Arrived pic for party' + partyId + ' url: ' + url);
     // search the party in the db to get the url array of the pics
     const partyObj = await Party.findOne({
@@ -139,11 +142,11 @@ exports.insertUrlInDb = async (req, res) => {
     });
     console.log('Prev url arr is: ' + partyObj.pics);
     // parse the url string into an actual array
-    const picsArr = JSON.parse(partyObj.pics)
+    const picsArr = JSON.parse(partyObj.pics);
     // push the new pic url into that
-    picsArr.push(url)
+    picsArr.push(url);
     console.log('New pics arr is: ' + picsArr);
-    // update the record in the db 
+    // update the record in the db
     await Party.update(
       {
         pics: JSON.stringify(picsArr),
@@ -158,4 +161,52 @@ exports.insertUrlInDb = async (req, res) => {
   } catch (error) {
     res.sendStatus(404);
   }
+};
+
+exports.getSocketRoom = async (req, res) => {
+  try {
+    const partyId = req.params.id;
+    let party = await Party.findOne({
+      where: { party_id: partyId },
+    });
+    res.status(200);
+    res.send(JSON.stringify(party.socket_room_id));
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};
+
+exports.socketIoUpdateParty = async (socketRoom, id) => {
+  try {
+    let partyObj = await Party.findOne({
+      where: { party_id: id },
+    });
+    let picsArr = JSON.parse(partyObj.pics)
+    io.to(socketRoom).emit("pics", picsArr);
+  } catch (error) {
+    console.log(error);
+  }
+  return;
 }
+
+exports.triggerSocket = async (socketRoom, partyId) => {
+  // every 2 seconds, call this function (socketIoUpdateParty) 
+  // that will query the db, take the pics array, and broadcast it into the room.
+  setInterval(() => {
+    this.socketIoUpdateParty(socketRoom, partyId);
+  }, 2000);
+  return;
+};
+
+exports.startSetIntervals = async () => {
+  // go into Party, take every party_id, with every socket_room_id
+  // and call socketIoUpdateParty on them.
+  let parties = await Party.findAll();
+  for (let party of parties) {
+    this.triggerSocket(
+      party.dataValues.socket_room_id,
+      party.dataValues.party_id
+    );
+  }
+};

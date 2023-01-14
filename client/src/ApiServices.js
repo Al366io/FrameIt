@@ -97,3 +97,15 @@ export async function sendUrlToDb(url, id) {
     .then((response) => response);
   return response;
 }
+
+export async function getSocketRoomId (id) {
+  try {
+    const response = fetch(`https://www.frameit.social/party/socketRoom/${id}`).then(
+      (response) => response.text()
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return '';
+  }
+}
