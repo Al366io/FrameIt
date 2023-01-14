@@ -41,6 +41,7 @@ function PartyRoomOwner() {
     fetchSocketRoomId();
 
     socket.on('pics', (data) => {
+      console.log(data);
       setPhotos(data);
     });
   }, []);
