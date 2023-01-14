@@ -10,20 +10,24 @@ export function generateRandomString(length) {
 }
 
 export async function createOwner(user_email) {
-  const data = {
-    email: user_email,
-  };
-  const response = await fetch(`https://www.frameit.social/users/owner`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  }).then((response) => response.text());
-  if (response.status.toString()[0] == 2) 
-    return 1
-  else
-    return 0
+  try {
+    const data = {
+      email: user_email,
+    };
+    const response = await fetch(`https://www.frameit.social/users/owner`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then((response) => response.text());
+    if (response.status.toString()[0] == 2) 
+      return 1
+    else
+      return 0
+  } catch (error) {
+    return 0;
+  }
 }
 
 export async function createParty(email) {
