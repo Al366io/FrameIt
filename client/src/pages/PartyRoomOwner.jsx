@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSocketRoomId } from '../ApiServices'
+import { getSocketRoomId } from '../ApiServices';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -40,7 +40,7 @@ function PartyRoomOwner() {
     fetchSocketRoomId();
 
     socket.on('pics', (data) => {
-        setPhotos(data);
+      setPhotos(data);
     });
   }, []);
 
@@ -104,16 +104,16 @@ function PartyRoomOwner() {
               TAKE PICS FOR UR PARTY
             </button>
           </div>
-          <div className='gridContainer'>
-            {!photos.length ? (
-              <h3>No pics for now</h3>
-            ) : (
-              photos.map((pic, idx) => {
-                return (
-                  <img className='gridItem' key={idx} src={pic}></img>
-                )
-              })
-            )}
+          <div className="container">
+            <div className="gridContainer">
+              {!photos.length ? (
+                <h3>No pics for now</h3>
+              ) : (
+                photos.map((pic, idx) => {
+                  return <img className="gridItem" key={idx} src={pic}></img>;
+                })
+              )}
+            </div>
           </div>
         </>
       ) : (
