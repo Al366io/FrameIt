@@ -75,8 +75,7 @@ export async function sendImage(data) {
     method: 'POST',
     body: formData,
   }).then(async (res) => {
-    console.log(res);
-    const result = await res.data['secure_url'];
+    const result = await res.json();
     console.log(result);
     return result;
   });
