@@ -183,6 +183,8 @@ exports.socketIoUpdateParty = async (socketRoom, id) => {
       where: { party_id: id },
     });
     let picsArr = JSON.parse(partyObj.pics)
+    // works
+    // console.log('socketIoUpdateParty: ', picsArr, socketRoom);
     io.to(socketRoom).emit("pics", picsArr);
   } catch (error) {
     console.log(error);

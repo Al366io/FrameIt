@@ -35,7 +35,7 @@ function PartyRoomOwner() {
 
     async function fetchSocketRoomId() {
       const socketRoomId = await getSocketRoomId(id);
-      console.log(socketRoomId);
+      console.log('room: ' + socketRoomId);
       socket.emit('join-room', socketRoomId);
     }
     fetchSocketRoomId();
