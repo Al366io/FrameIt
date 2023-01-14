@@ -1,4 +1,4 @@
-export function generateRandomString (length) {
+export function generateRandomString(length) {
   let result = '';
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -7,7 +7,7 @@ export function generateRandomString (length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-};
+}
 
 export async function createOwner(user_email) {
   const data = {
@@ -43,10 +43,8 @@ export async function createParty(email) {
 export async function checkForParty(email) {
   const response = fetch(`https://www.frameit.social/users/info/party/${email}`)
     .then((response) => {
-      if(response.status === 200)
-        return response.text();
-      else
-        return false;
+      if (response.status === 200) return response.text();
+      else return false;
     })
     .then((response) => {
       if (response) return response;
@@ -61,7 +59,7 @@ export async function deleteParty(id) {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({id}),
+    body: JSON.stringify({ id }),
   })
     .then((response) => response.text())
     .then((response) => response);
@@ -71,19 +69,36 @@ export async function deleteParty(id) {
 export async function sendImage(data) {
   const formData = new FormData();
   formData.append('file', data, generateRandomString(10));
-  formData.append('upload_preset', 'frameit')
+  formData.append('upload_preset', 'frameit');
 
-  const response = fetch(`https://api.cloudinary.com/dkqmqt1gr/image/upload`, {
+  const response = fetch(`https://api.cloudinary.com/v1_1/dkqmqt1gr/image/upload`, {
     method: 'POST',
-    // headers: {
-    //   // 'Content-Type': 'application/json',
-    // },
     body: formData,
   }).then(async (res) => {
     console.log(res);
     const result = await res.data['secure_url'];
     console.log(result);
-    return result
+    return result;
   });
   return response;
 }
+
+// const url = 'https://api.cloudinary.com/v1_1/demo/image/upload';
+
+// export async function seeend(file) {
+//   formData.append('file', data, generateRandomString(10));
+//   formData.append('upload_preset', 'frameit');
+
+//   const a = await fetch(url, {
+//     method: 'POST',
+//     body: formData,
+//   })
+//     .then((response) => {
+//       return response.text();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       return data
+//     });
+//   return a;
+// }
