@@ -57,8 +57,12 @@ function PartyRoomPH() {
     const input = document.getElementById('foto');
     let photo = input.files[0];
     if (photo) {
+      if (!compressed) {
+        compressed = await compress(photo, 0.2);
+      }
+
       setFileUploaded(true);
-      fileReader.readAsDataURL(photo);
+      fileReader.readAsDataURL(compressed);
       fileReader.addEventListener('load', function () {
         setSomething(this.result);
       });
@@ -69,9 +73,7 @@ function PartyRoomPH() {
       //     'size before:' + sizeInMb + '  Size after: ' + compressed.size
       //   );
       // }
-      if (!compressed) {
-        compressed = await compress(photo, 0.2);
-      }
+
       setPhotoTaken(compressed);
     } else setFileUploaded(false);
   }
@@ -108,10 +110,10 @@ function PartyRoomPH() {
         </form>
       </div>
       <div className="secondHalf">
-        {photoTaken ? (
+        {fileUploaded ? (
           <>
             <div className="imagePreview">
-              <img className="imagePreviewActually" src={photoTaken}></img>
+              <img className="imagePreviewActually" src={something}></img>
             </div>
             <button className="logButton" onClick={downloadIt}>
               DOWNLOAD
