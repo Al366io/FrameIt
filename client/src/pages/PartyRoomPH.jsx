@@ -63,15 +63,15 @@ function PartyRoomPH() {
       fileReader.addEventListener('load', function () {
         setSomething(this.result);
       });
-      let sizeInMb = Math.trunc(photo.size / 1024 / 1024);
-      if (sizeInMb >= 3) {
-        compressed = await compressAccurately(photo, 3000); // compress to 3MB if it's bigger
-        console.log(
-          'size before:' + sizeInMb + '  Size after: ' + compressed.size
-        );
-      }
+      //let sizeInMb = Math.trunc(photo.size / 1024 / 1024);
+      // if (sizeInMb >= 3) {
+      //   compressed = await compressAccurately(photo, 3000); // compress to 3MB if it's bigger
+      //   console.log(
+      //     'size before:' + sizeInMb + '  Size after: ' + compressed.size
+      //   );
+      // }
       if (!compressed) {
-        compressed = await compress(photo, 1);
+        compressed = await compress(photo, 0.2);
       }
       setPhotoTaken(compressed);
     } else setFileUploaded(false);

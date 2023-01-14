@@ -7,17 +7,21 @@ const port = process.env.PORT || 3000;
 const http = require('http');
 const server = http.createServer(app);
 const socketIo = require('socket.io');
+/* global io */
 global.io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://frame-it.vercel.app',
   },
 }); //in case server and client run on different urls
+const corsOptions = {
+  origin: 'https://frame-it.vercel.app',
+}
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(
   fileUpload({
     limits: {
-      fileSize: 15000000, // 15MB
+      fileSize: 9000000, // 9MB
     },
     abortOnLimit: true,
   })

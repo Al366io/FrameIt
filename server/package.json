@@ -18,5 +18,8 @@
     "save-dev": "^0.0.1-security",
     "sequelize": "^6.28.0",
     "socket.io": "^4.5.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0"
   }
 }

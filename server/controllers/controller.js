@@ -1,7 +1,6 @@
 const { AuthTableOwner } = require('../models/model');
 const { generateRandomString, ensureExists } = require('../helpers/helpers');
 const path = require('path');
-const fs = require('fs');
 
 async function createIfNotThere(user) {
   const alreadyInDb = await AuthTableOwner.findOne({
