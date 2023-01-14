@@ -1,3 +1,14 @@
+export function generateRandomString (length) {
+  let result = '';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
 export async function createOwner(user_email) {
   const data = {
     email: user_email,
@@ -59,7 +70,7 @@ export async function deleteParty(id) {
 
 export async function sendImage(data, id) {
   const formData = new FormData();
-  formData.append('file', data);
+  formData.append('file', data, generateRandomString(8));
   const response = fetch(`https://www.frameit.social/party/add/${id}`, {
     method: 'POST',
     // headers: {

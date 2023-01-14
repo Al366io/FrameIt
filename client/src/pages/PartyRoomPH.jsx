@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { sendImage } from '../ApiServices';
+import { generateRandomString, sendImage } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, compressAccurately, downloadFile } from 'image-conversion';
@@ -13,17 +13,6 @@ function PartyRoomPH() {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
   const [photoTaken, setPhotoTaken] = useState({});
-
-  const generateRandomString = function (length) {
-    let result = '';
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  };
 
   async function sendIt(e) {
     e.preventDefault();
