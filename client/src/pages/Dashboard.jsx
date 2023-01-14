@@ -18,13 +18,17 @@ function Dashboard() {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0();
   const [partyId, setPartyId] = useState('');
+  const [isUp, setIsUp] = useState(1);
 
   useEffect(() => {
     async function fetchData() {
       if (isAuthenticated) {
-        await createOwner(user.email);
-        const partyId = await checkForParty(user.email);
-        if (partyId) setPartyId(partyId);
+        const up = await createOwner(user.email);
+        setIsUp[up];
+        if (isUp) {
+          const partyId = await checkForParty(user.email);
+          if (partyId) setPartyId(partyId);
+        }
       }
     }
     fetchData();
@@ -61,40 +65,48 @@ function Dashboard() {
     <div className="App">
       <div className="dashboardWrapper">
         <Navbar></Navbar>
-        <div className="firstHalfDash">
-          {isAuthenticated ? (
-            <div className="hello"> Hello, {user.given_name} ! </div>
-          ) : (
-            ''
-          )}
-          {isAuthenticated ? (
-            partyId ? (
-              <div className="dashButtons">
-                <button className="mainButton" onClick={handleRedirect}>
-                  GO TO UR PARTY
-                </button>
-                <button className="mainButton" onClick={handleDelete}>
-                  DELETE CURRENT PARTY
-                </button>
-              </div>
-            ) : (
-              <button onClick={handleCreate} className="logButton">
-                CREATE A PARTY 📸
-              </button>
-            )
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="secondHalfDash"></div>
-        {isAuthenticated ? (
-          <div className="navButton" onClick={logout}>
-            <button className="logButton">LOGOUT</button>
+        {!isUp ? (
+          <div className="firstHalfDash">
+            <h2>Our Server is 📉</h2>
           </div>
         ) : (
-          <div className="navButton" onClick={() => loginWithRedirect()}>
-            <button className="logButton">LOGIN</button>
-          </div>
+          <>
+            <div className="firstHalfDash">
+              {isAuthenticated ? (
+                <div className="hello"> Hello, {user.given_name} ! </div>
+              ) : (
+                ''
+              )}
+              {isAuthenticated ? (
+                partyId ? (
+                  <div className="dashButtons">
+                    <button className="mainButton" onClick={handleRedirect}>
+                      GO TO UR PARTY
+                    </button>
+                    <button className="mainButton" onClick={handleDelete}>
+                      DELETE CURRENT PARTY
+                    </button>
+                  </div>
+                ) : (
+                  <button onClick={handleCreate} className="logButton">
+                    CREATE A PARTY 📸
+                  </button>
+                )
+              ) : (
+                ''
+              )}
+            </div>
+            <div className="secondHalfDash"></div>
+            {isAuthenticated ? (
+              <div className="navButton" onClick={logout}>
+                <button className="logButton">LOGOUT</button>
+              </div>
+            ) : (
+              <div className="navButton" onClick={() => loginWithRedirect()}>
+                <button className="logButton">LOGIN</button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

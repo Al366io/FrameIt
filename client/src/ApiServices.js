@@ -20,8 +20,10 @@ export async function createOwner(user_email) {
     },
     body: JSON.stringify(data),
   }).then((response) => response.text());
-  if (response.status === 204) return 1;
-  return null;
+  if (response.status.toString()[0] == 2) 
+    return 1
+  else
+    return 0
 }
 
 export async function createParty(email) {
