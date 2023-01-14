@@ -40,10 +40,7 @@ function PartyRoomOwner() {
     fetchSocketRoomId();
 
     socket.on('pics', (data) => {
-      if (data[data.length] !== photos[photos.length]) {
         setPhotos(data);
-        console.log(123);
-      }
     });
   }, []);
 
