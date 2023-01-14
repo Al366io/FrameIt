@@ -48,7 +48,7 @@ function PartyRoomPH() {
   }
 
   async function downloadIt() {
-    downloadFile()
+    downloadFile(photoTaken, generateRandomString(8));
   }
 
   async function handleChange() {
@@ -63,11 +63,11 @@ function PartyRoomPH() {
       });
       let sizeInMb = Math.trunc(photo.size/1024/1024);
       if (sizeInMb >= 3) {
-        compressed = await compressAccurately(input,3000) // compress to 3MB if it's bigger
+        compressed = await compressAccurately(photo,3000) // compress to 3MB if it's bigger
         console.log('size before:' + sizeInMb + '  Size after: ' + compressed.size)
       }
       if(!compressed) {
-        compressed = await compress(input, 1);
+        compressed = await compress(photo, 1);
       }
       setPhotoTaken(compressed);
       console.log(photo.name);
