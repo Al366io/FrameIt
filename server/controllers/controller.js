@@ -36,7 +36,12 @@ exports.createParty = async (req, res) => {
       where: { user_email: email },
     });
     if (!user) {
-      res.sendStatus(404);
+      res.sendStatus(404); // user not found
+      return;
+    }
+    if (user.party_id) {
+      res.sendStatus(400); // bad request, user already has a party
+      return;
     }
     await AuthTableOwner.update(
       {
@@ -75,8 +80,7 @@ exports.checkIfUserHasParty = async (req, res) => {
     } else {
       // user in db, but no partyId
       // console.log('not found');
-      res.send('');
-      res.status(204);
+      res.sendStatus(204);
     }
   } catch (error) {
     //user not in db OR server error (1st one more likely)
@@ -102,32 +106,32 @@ exports.deleteParty = async (req, res) => {
   }
 };
 
-exports.saveIncomingPhoto = (req, res) => {
-  try {
-    const id = req.params.id;
-    const { file } = req.files;
-    // Move the uploaded image to our upload folder
-    let myPath = path.join(__dirname, '../uploads/' + id);
-    let isErr = false;
-    ensureExists(myPath, function (err) {
-      if (err) {
-        console.log(err);
-        isErr = true;
-      }
-    });
-    if (isErr) {
-      console.log('aaa');
-      res.sendStatus(500);
-      return;
-    }
-    file.mv(myPath + '/' + file.name);
-    // All good
-    res.sendStatus(200);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-};
+// exports.saveIncomingPhoto = (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const { file } = req.files;
+//     // Move the uploaded image to our upload folder
+//     let myPath = path.join(__dirname, '../uploads/' + id);
+//     let isErr = false;
+//     ensureExists(myPath, function (err) {
+//       if (err) {
+//         console.log(err);
+//         isErr = true;
+//       }
+//     });
+//     if (isErr) {
+//       console.log('aaa');
+//       res.sendStatus(500);
+//       return;
+//     }
+//     file.mv(myPath + '/' + file.name);
+//     // All good
+//     res.sendStatus(200);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendStatus(500);
+//   }
+// };
 
 exports.insertUrlInDb = async (req, res) => {
   // JSON.stringify([url,url,url,url])
@@ -182,18 +186,16 @@ exports.socketIoUpdateParty = async (socketRoom, id) => {
     let partyObj = await Party.findOne({
       where: { party_id: id },
     });
-    let picsArr = JSON.parse(partyObj.pics)
-    // works
-    // console.log('socketIoUpdateParty: ', picsArr, socketRoom);
-    io.to(socketRoom).emit("pics", picsArr);
+    let picsArr = JSON.parse(partyObj.pics);
+    io.to(socketRoom).emit('pics', picsArr);
   } catch (error) {
     console.log(error);
   }
   return;
-}
+};
 
 exports.triggerSocket = async (socketRoom, partyId) => {
-  // every 2 seconds, call this function (socketIoUpdateParty) 
+  // every 2 seconds, call this function (socketIoUpdateParty)
   // that will query the db, take the pics array, and broadcast it into the room.
   setInterval(() => {
     this.socketIoUpdateParty(socketRoom, partyId);

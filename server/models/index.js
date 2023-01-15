@@ -5,7 +5,6 @@ const sequelize = new Sequelize(
     dialect: 'postgres',
     logging: false,
     dialectOptions: {
-      // Your pg options here
       ssl: {
         require: true,
         rejectUnauthorized: false

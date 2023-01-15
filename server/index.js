@@ -1,5 +1,5 @@
 const express = require('express');
-const { startSetIntervals } = require("./controllers/controller");
+const { startSetIntervals } = require('./controllers/controller');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const router = require('./router');
@@ -14,9 +14,18 @@ global.io = socketIo(server, {
     origin: 'https://frame-it.vercel.app',
   },
 }); //in case server and client run on different urls
+
+var whitelist = ['https://frame-it.vercel.app', 'http://localhost:3000'];
 const corsOptions = {
-  origin: 'https://frame-it.vercel.app',
-}
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(
@@ -39,9 +48,10 @@ io.on('connection', (socket) => {
   });
 });
 
-// DELETE THIS IN FINAL PRODUCTION DEPLOY
+// this is to start listening on all parties that are already created
+// vital if server stops and restarts, because we trigger the setInterval only on createParty.
 setTimeout(() => {
-  startSetIntervals()
+  startSetIntervals();
 }, 5000);
 
 server.listen(port, () => {
