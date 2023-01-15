@@ -75,7 +75,7 @@ function PartyRoomOwner() {
   };
 
   const goToPh = () => {
-    navigate(`/party/${id}/ph`);
+    navigate(`/party/${id}/ph/add`);
   };
 
   return (
@@ -95,7 +95,7 @@ function PartyRoomOwner() {
               {canShare ? (
                 <span>SHARE</span>
               ) : !copied ? (
-                <span>COPY</span>
+                <span>COPY 🔖</span>
               ) : (
                 <span>COPIED ✅</span>
               )}
@@ -109,9 +109,12 @@ function PartyRoomOwner() {
               {!photos.length ? (
                 <h3>No pics for now</h3>
               ) : (
-                photos.map((pic, idx) => {
+                <>
+                <h3>No pics for now</h3>
+                {photos.map((pic, idx) => {
                   return <img className="gridItem" key={idx} src={pic}></img>;
-                })
+                })}
+                </>
               )}
             </div>
           </div>
