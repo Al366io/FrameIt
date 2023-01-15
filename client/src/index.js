@@ -8,12 +8,12 @@ import { Auth0Provider } from "@auth0/auth0-react";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Auth0Provider
-    // domain="dev-1qkrqe1l7lkx2qt6.us.auth0.com"
-    // clientId="Gse5squkieYkvFUOozcxIwnDxnPxwAAH"
-    // redirectUri="https://frame-it.vercel.app/dashboard/"
-    domain={process.env.DOMAIN_ID}
-    clientId={process.env.CLIENT_ID}
-    redirectUri={process.env.REDIRECT_URI}
+    domain="dev-1qkrqe1l7lkx2qt6.us.auth0.com"
+    clientId="Gse5squkieYkvFUOozcxIwnDxnPxwAAH"
+    redirectUri="https://frame-it.vercel.app/dashboard/"
+    // domain={process.env.DOMAIN_ID}
+    // clientId={process.env.CLIENT_ID}
+    // redirectUri={process.env.REDIRECT_URI}
   >
     <App />
   </Auth0Provider>,
