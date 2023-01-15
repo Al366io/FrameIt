@@ -19,6 +19,10 @@ const AuthTableOwner = sequelize.define('AuthTableOwner', {
 })
 
 const Party = sequelize.define('Party', {
+  interval_id : {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   party_id: {
     type: DataTypes.STRING,
     allowNull: false

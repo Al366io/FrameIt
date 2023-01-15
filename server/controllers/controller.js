@@ -91,6 +91,7 @@ exports.checkIfUserHasParty = async (req, res) => {
 exports.deleteParty = async (req, res) => {
   try {
     const id = req.body.id;
+    // reset owner's "partyId" column to ''
     await AuthTableOwner.update(
       {
         party_id: '',
@@ -99,9 +100,20 @@ exports.deleteParty = async (req, res) => {
         where: { party_id: id },
       }
     );
+    // delete the setInterval for that party.
+    let partyObj = await Party.findOne({where: {party_id: id}})
+    clearInterval(partyObj.interval_id);
+
+    // delete the row of that party from the Party table
+    await Party.destroy({
+      where: {
+        party_id: id
+      }
+    })
     res.send(true);
     res.status(200);
   } catch (error) {
+    // one of the two not found so 404
     res.sendStatus(404);
   }
 };
@@ -197,10 +209,10 @@ exports.socketIoUpdateParty = async (socketRoom, id) => {
 exports.triggerSocket = async (socketRoom, partyId) => {
   // every 2 seconds, call this function (socketIoUpdateParty)
   // that will query the db, take the pics array, and broadcast it into the room.
-  setInterval(() => {
+  const id = setInterval(() => {
     this.socketIoUpdateParty(socketRoom, partyId);
   }, 2000);
-  return;
+  return id;
 };
 
 exports.startSetIntervals = async () => {
@@ -208,9 +220,20 @@ exports.startSetIntervals = async () => {
   // and call socketIoUpdateParty on them.
   let parties = await Party.findAll();
   for (let party of parties) {
-    this.triggerSocket(
+    // call the function, wait for the id of the interval, then save in the party table
+    let interval = this.triggerSocket(
       party.dataValues.socket_room_id,
       party.dataValues.party_id
     );
+    // save the intervalId 
+    Party.update(
+      {
+        interval_id: interval,
+      },
+      {
+        where: { party_id: party.dataValues.party_id },
+      }
+    );
   }
+  return;
 };
