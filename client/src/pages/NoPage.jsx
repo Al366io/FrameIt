@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import '../styles/Dashboard';
+import '../styles/Dashboard.css';
 
 function NoPage() {
   return (
