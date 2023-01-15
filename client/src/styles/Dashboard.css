@@ -123,11 +123,9 @@
 
 .gridContainer {
   flex-wrap: wrap;
-  margin: -1rem -1rem;
-  padding-bottom: 3rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  grid-gap: 2rem;
+  grid-template-columns: 30%, 30%, 30%;
+  grid-gap: 1rem;
 }
 
 .gridItem {
