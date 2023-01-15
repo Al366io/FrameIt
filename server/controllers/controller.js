@@ -2,6 +2,9 @@ const { AuthTableOwner, Party } = require('../models/model');
 const { generateRandomString, ensureExists } = require('../helpers/helpers');
 const path = require('path');
 
+// obj that will map the intervals of the parties. -> mapOfIntervals = { partyId: interval }
+let mapOfIntervals = {}
+
 async function createIfNotThere(user) {
   const alreadyInDb = await AuthTableOwner.findOne({
     where: { user_email: user.user_email },
@@ -58,7 +61,8 @@ exports.createParty = async (req, res) => {
     };
     await Party.create(party);
     // here call the function that will set the interval to update this particular room
-    this.triggerSocket(party.socket_room_id, id);
+    let interval = await this.triggerSocket(party.socket_room_id, id);
+    mapOfIntervals[id] = interval;
     res.send(id);
     res.status(200);
   } catch (error) {
@@ -101,8 +105,7 @@ exports.deleteParty = async (req, res) => {
       }
     );
     // delete the setInterval for that party.
-    let partyObj = await Party.findOne({where: {party_id: id}})
-    clearInterval(partyObj.interval_id);
+    clearInterval(mapOfIntervals[id]);
 
     // delete the row of that party from the Party table
     await Party.destroy({
@@ -118,35 +121,7 @@ exports.deleteParty = async (req, res) => {
   }
 };
 
-// exports.saveIncomingPhoto = (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const { file } = req.files;
-//     // Move the uploaded image to our upload folder
-//     let myPath = path.join(__dirname, '../uploads/' + id);
-//     let isErr = false;
-//     ensureExists(myPath, function (err) {
-//       if (err) {
-//         console.log(err);
-//         isErr = true;
-//       }
-//     });
-//     if (isErr) {
-//       console.log('aaa');
-//       res.sendStatus(500);
-//       return;
-//     }
-//     file.mv(myPath + '/' + file.name);
-//     // All good
-//     res.sendStatus(200);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// };
-
 exports.insertUrlInDb = async (req, res) => {
-  // JSON.stringify([url,url,url,url])
   try {
     // take variables from body
     const url = req.body.url;
@@ -220,20 +195,13 @@ exports.startSetIntervals = async () => {
   // and call socketIoUpdateParty on them.
   let parties = await Party.findAll();
   for (let party of parties) {
+    let id = party.dataValues.party_id
     // call the function, wait for the id of the interval, then save in the party table
-    let interval = this.triggerSocket(
-      party.dataValues.socket_room_id,
-      party.dataValues.party_id
-    );
-    // save the intervalId 
-    Party.update(
-      {
-        interval_id: interval,
-      },
-      {
-        where: { party_id: party.dataValues.party_id },
-      }
-    );
+    let interval = await this.triggerSocket(
+      party.dataValues.socket_room_id, id);
+
+    // save the intervalId into the map of Intervals.
+    mapOfIntervals[id] = interval;
   }
   return;
 };
