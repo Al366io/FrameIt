@@ -1,9 +1,13 @@
 
 html {
-  overflow: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
   height: 100%;
 }
-
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
 body {
   height: 100%;
   overflow: auto;
