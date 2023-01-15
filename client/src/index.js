@@ -10,7 +10,8 @@ root.render(
 <Auth0Provider
     domain="dev-1qkrqe1l7lkx2qt6.us.auth0.com"
     clientId="Gse5squkieYkvFUOozcxIwnDxnPxwAAH"
-    redirectUri="https://frame-it.vercel.app/dashboard/"
+    // redirectUri="https://frame-it.vercel.app/dashboard/"
+    redirectUri='http://localhost:3000/dashboard'
     // domain={process.env.DOMAIN_ID}
     // clientId={process.env.CLIENT_ID}
     // redirectUri={process.env.REDIRECT_URI}

@@ -1,10 +1,10 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
-import { useAuth0 } from '@auth0/auth0-react';
+// import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
-import { compress, compressAccurately, downloadFile } from 'image-conversion';
+import { compress, downloadFile } from 'image-conversion';
 import Navbar from '../components/Navbar';
 
 // reachable at /party/:id/ph/add
@@ -40,7 +40,7 @@ function PartyRoomPH() {
     let photo = input.files[0];
     if (photo) {
       if (!compressed) {
-        compressed = await compress(photo, 0.2);
+        compressed = await compress(photo, 0.3);
       }
       setFileUploaded(true);
       fileReader.readAsDataURL(compressed);

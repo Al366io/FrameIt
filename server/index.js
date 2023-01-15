@@ -11,8 +11,12 @@ const socketIo = require('socket.io');
 /* global io */
 global.io = socketIo(server, {
   cors: {
-    origin: 'https://frame-it.vercel.app',
+    origin: [
+      'http://localhost', 
+      'https://frame-it.vercel.app'
+    ],
   },
+  methods: ['GET', 'POST', 'DELETE'],
 }); //in case server and client run on different urls
 
 var whitelist = ['https://frame-it.vercel.app', 'http://localhost:3000'];

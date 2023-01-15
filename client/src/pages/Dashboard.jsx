@@ -9,9 +9,9 @@ import {
   checkForParty,
   deleteParty,
 } from '../ApiServices';
-import { QRCodeSVG } from 'qrcode.react';
 import Navbar from '../components/Navbar';
 import '../styles/Dashboard.css';
+import { MagnifyingGlass } from 'react-loader-spinner';
 
 function Dashboard() {
   const { id } = useParams();
@@ -19,12 +19,20 @@ function Dashboard() {
   const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0();
   const [partyId, setPartyId] = useState('');
   const [isUp, setIsUp] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+
     async function fetchData() {
       if (isAuthenticated) {
         const up = await createOwner(user.email);
         setIsUp(up);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
         if (isUp) {
           const partyId = await checkForParty(user.email);
           if (partyId) setPartyId(partyId);
@@ -65,46 +73,66 @@ function Dashboard() {
     <div className="App">
       <div className="dashboardWrapper">
         <Navbar></Navbar>
-        {!isUp ? (
-          <div className="firstHalfDash">
-            <h2>Our Server is 📉</h2>
+        {loading ? (
+          <div className="loaderWrap">
+            <MagnifyingGlass
+              visible={true}
+              height="90"
+              width="90"
+              ariaLabel="MagnifyingGlass-loading"
+              wrapperStyle={{}}
+              wrapperClass="MagnifyingGlass-wrapper"
+              glassColor="#ecbef7"
+              color="#8139d1"
+            />
           </div>
         ) : (
           <>
-            <div className="firstHalfDash">
-              {isAuthenticated ? (
-                <div className="hello"> Hello, {user.given_name} ! </div>
-              ) : (
-                ''
-              )}
-              {isAuthenticated ? (
-                partyId ? (
-                  <div className="dashButtons">
-                    <button className="mainButton" onClick={handleRedirect}>
-                      GO TO UR PARTY
-                    </button>
-                    <button className="mainButton" onClick={handleDelete}>
-                      DELETE CURRENT PARTY
-                    </button>
-                  </div>
-                ) : (
-                  <button onClick={handleCreate} className="logButton">
-                    CREATE A PARTY 📸
-                  </button>
-                )
-              ) : (
-                ''
-              )}
-            </div>
-            <div className="secondHalfDash"></div>
-            {isAuthenticated ? (
-              <div className="navButton" onClick={logout}>
-                <button className="logButton">LOGOUT</button>
+            {!isUp ? (
+              <div className="firstHalfDash">
+                <h2>Our Server is 📉</h2>
               </div>
             ) : (
-              <div className="navButton" onClick={() => loginWithRedirect()}>
-                <button className="logButton">LOGIN</button>
-              </div>
+              <>
+                <div className="firstHalfDash">
+                  {isAuthenticated ? (
+                    <div className="hello"> Hello, {user.given_name} ! </div>
+                  ) : (
+                    ''
+                  )}
+                  {isAuthenticated ? (
+                    partyId ? (
+                      <div className="dashButtons">
+                        <button className="mainButton" onClick={handleRedirect}>
+                          GO TO UR PARTY
+                        </button>
+                        <button className="mainButton" onClick={handleDelete}>
+                          DELETE CURRENT PARTY
+                        </button>
+                      </div>
+                    ) : (
+                      <button onClick={handleCreate} className="logButton">
+                        CREATE A PARTY 📸
+                      </button>
+                    )
+                  ) : (
+                    ''
+                  )}
+                </div>
+                <div className="secondHalfDash"></div>
+                {isAuthenticated ? (
+                  <div className="navButton" onClick={logout}>
+                    <button className="logButton">LOGOUT</button>
+                  </div>
+                ) : (
+                  <div
+                    className="navButton"
+                    onClick={() => loginWithRedirect()}
+                  >
+                    <button className="logButton">LOGIN</button>
+                  </div>
+                )}
+              </>
             )}
           </>
         )}

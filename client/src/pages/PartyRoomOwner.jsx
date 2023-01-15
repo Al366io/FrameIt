@@ -8,6 +8,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import Navbar from '../components/Navbar';
 import { io } from 'socket.io-client';
 import '../styles/Dashboard.css';
+import { MagnifyingGlass } from 'react-loader-spinner';
 
 function PartyRoomOwner() {
   const { id } = useParams();
@@ -16,8 +17,13 @@ function PartyRoomOwner() {
   const navigate = useNavigate();
   const [photos, setPhotos] = useState([]);
   const { isAuthenticated, user } = useAuth0();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
     if (!isAuthenticated) {
       navigate(`/`);
     }
@@ -104,20 +110,32 @@ function PartyRoomOwner() {
               TAKE PICS FOR UR PARTY
             </button>
           </div>
-          <div className="container">
-            <div className="gridContainer">
+          {loading ? (
+            <div className="loaderWrap">
+              <MagnifyingGlass
+                visible={true}
+                height="90"
+                width="90"
+                ariaLabel="MagnifyingGlass-loading"
+                wrapperStyle={{}}
+                wrapperClass="MagnifyingGlass-wrapper"
+                glassColor="#ecbef7"
+                color="#8139d1"
+              />
+            </div>
+          ) : (
+            <div className="container">
               {!photos.length ? (
                 <h3>No pics for now</h3>
               ) : (
-                <>
-                <h3>No pics for now</h3>
-                {photos.map((pic, idx) => {
-                  return <img className="gridItem" key={idx} src={pic}></img>;
-                })}
-                </>
+                <div className="gridContainer">
+                  {photos.map((pic, idx) => {
+                    return <img className="gridItem" key={idx} src={pic}></img>;
+                  })}
+                </div>
               )}
             </div>
-          </div>
+          )}
         </>
       ) : (
         ''
