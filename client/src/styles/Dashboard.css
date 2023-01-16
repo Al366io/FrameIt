@@ -233,9 +233,21 @@
 .confirmYes {
   color:rgb(0, 0, 0);
   background-color: green;
+  font-weight: 00;
+  letter-spacing: 3px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 90%;
 }
 
 .confirmNo {
   color:rgb(0, 0, 0);
   background-color: red;
+  font-weight: 00;
+  letter-spacing: 3px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 30px;
+  border: none;
+  font-size: 90%;
 }

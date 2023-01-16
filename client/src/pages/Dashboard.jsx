@@ -110,13 +110,15 @@ function Dashboard() {
                         <button className="mainButton" onClick={handleRedirect}>
                           GO TO UR PARTY
                         </button>
-                        <button className="mainButton" onClick={confirm}>
+                        <button className={ askConfirm ? "mainButton invisible" : "mainButton"} onClick={confirm}>
                           DELETE CURRENT PARTY
                         </button>
                         <div className={askConfirm ? 'askConfirm' : 'invisible askConfirm'}>
                           ARE YOU SURE?
-                          <button className='confirmYes' onClick={handleDelete}>YES</button>
-                          <button className='confirmNo' onClick={() => setAskConfirm(false)}>NO</button>
+                          <div className='wrapConfirm'>
+                            <button className='confirmYes' onClick={handleDelete}>YES</button>
+                            <button className='confirmNo' onClick={() => setAskConfirm(false)}>NO</button>
+                          </div>
                         </div>
                       </div>
                     ) : (
