@@ -16,6 +16,7 @@ function Home() {
     }
   });
   // TODO: HERE DO A: "JOIN A PARTY" BUTTON -> OPEN INPUT, you type in the code and you get redirected to that party room.
+  // TODO: INSERT FOOTER WITH MY INFO
   return (
     <div className="App">
       <div className="homeWrapper">

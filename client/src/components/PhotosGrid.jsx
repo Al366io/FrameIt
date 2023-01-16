@@ -53,6 +53,7 @@ function PhotosGrid({ id }) {
 
   return (
     <div>
+      <div id="track-separator"></div>
       <div className={ loading ? 'loaderWrap' : 'invisible'}>
         <Grid
           height="80"

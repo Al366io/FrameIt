@@ -64,7 +64,7 @@ function PartyRoomPH() {
         ROOM #{id}
         <form id="formSend" onSubmit={sendIt}>
           <div className="fotoWrap">
-            <label htmlFor="foto" className="customFoto">
+            <label htmlFor="foto" className="customFoto mainButton">
               📸
             </label>
             <label>Click to take Photo</label>
