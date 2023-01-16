@@ -162,7 +162,7 @@
   width: 100%;
   cursor: pointer;
   position: relative;
-  animation: scale-in-center ease-in-out 5s;
+  animation: scale-in-center ease-in-out 0.5s;
 }
 
 #errorContainer {
