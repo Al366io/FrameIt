@@ -306,6 +306,8 @@
 }
 
 .innerModal {
+  object-fit: cover;
+  aspect-ratio: 1;
   width: 80%;
   max-height: 80vh;
   max-width: 80vw;
