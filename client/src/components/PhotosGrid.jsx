@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
+import { MagnifyingGlass, Grid } from 'react-loader-spinner';
 import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
 import { io } from 'socket.io-client';
@@ -12,7 +12,7 @@ import { useState } from 'react';
   2. map it, displaying a photo component for every one of them 
   */
 
-function PhotosGrid({id}) {
+function PhotosGrid({ id }) {
   const [buffer, setBuffer] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +49,7 @@ function PhotosGrid({id}) {
     <div>
       {loading ? (
         <div className="loaderWrap">
-          <MagnifyingGlass
+          {/* <MagnifyingGlass
             visible={true}
             height="90"
             width="90"
@@ -58,6 +58,16 @@ function PhotosGrid({id}) {
             wrapperClass="MagnifyingGlass-wrapper"
             glassColor="#ecbef7"
             color="#8139d1"
+          /> */}
+          <Grid
+            height="80"
+            width="80"
+            color="#8139d1"
+            ariaLabel="grid-loading"
+            radius="12.5"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
           />
         </div>
       ) : (
