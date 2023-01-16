@@ -53,7 +53,7 @@ function PhotosGrid({ id }) {
 
   return (
     <div>
-      <div className="loaderWrap">
+      <div className={ loading ? 'loaderWrap' : 'invisible'}>
         <Grid
           height="80"
           width="80"
@@ -66,9 +66,9 @@ function PhotosGrid({ id }) {
         />
       </div>
       <div className="container">
-        {!photos.length ? (
+        {/* {!photos.length ? (
           <h3>No pics for now</h3>
-        ) : (
+        ) : ( */}
           <div className="gridContainer">
             {photos.map((pic, idx) => {
               return (
@@ -81,7 +81,7 @@ function PhotosGrid({ id }) {
               );
             })}
           </div>
-        )}
+        {/* )} */}
       </div>
     </div>
   );
