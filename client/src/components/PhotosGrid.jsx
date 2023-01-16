@@ -17,6 +17,7 @@ function PhotosGrid({ id }) {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalUrl, setModalUrl] = useState('')
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,16 +55,19 @@ function PhotosGrid({ id }) {
 
   function openModal(picUrl) {
     setModalOpen(true);
+    setModalUrl(picUrl)
   }
 
   function closeModal() {
     setModalOpen(false);
+    setModalUrl('')
   }
 
   return (
     <div>
-      <div className={modalOpen ? 'modal' : 'modal invisible'}>
+      <div className={modalOpen ? 'modal scale-in-center' : 'modal invisible'}>
         <span onClick={closeModal}>X</span>
+        <img src={modalUrl}></img>
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid

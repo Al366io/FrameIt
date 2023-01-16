@@ -76,30 +76,6 @@
     opacity: 1;
   }
 }
-@-webkit-keyframes slide-out-bck-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateZ(-1100px);
-    transform: translateZ(-1100px);
-    opacity: 0;
-  }
-}
-@keyframes slide-out-bck-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translateZ(-1100px);
-    transform: translateZ(-1100px);
-    opacity: 0;
-  }
-}
 /* END OF ANIMATION KEYFRAMES */
 .dashboardWrapper {
   height: 100vh;
@@ -322,7 +298,14 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(79, 79, 79, 0.437);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(107, 107, 107, 0.507);
+  z-index: 999;
+}
+
+.innerModal {
   z-index: 9999;
 }
 
