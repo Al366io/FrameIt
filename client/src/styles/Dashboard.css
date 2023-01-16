@@ -72,9 +72,9 @@
 }
 
 #track-separator{
-  width: 50vw;
-  min-height: 2px;
-  max-height: 2px;
+  width: 100vw;
+  min-height: 3px;
+  max-height: 3px;
   background-color: rgb(60, 60, 60, 0.5);
   align-self: center;
 }
@@ -139,7 +139,8 @@
 }
 
 .customFoto {
-  font-size: 50px;
+  font-size: 40px;
+  width: 20%;
 }
 
 .fotoWrap {
