@@ -20,7 +20,7 @@ function PhotosGrid({ id }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 15000);
+    }, 7000);
 
     const socket = io('https://www.frameit.social');
     socket.on('connect_error', () => {
@@ -39,11 +39,9 @@ function PhotosGrid({ id }) {
   }, []);
 
   function handleLoaded() {
-    let coll = document.getElementsByClassName('gridItem');
-    coll.forEach((el) => {
-      el.style.display = 'block';
-    });
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
   }
 
   useEffect(() => {
@@ -75,7 +73,7 @@ function PhotosGrid({ id }) {
             {photos.map((pic, idx) => {
               return (
                 <img
-                  className="gridItem"
+                  className={ loading ? 'gridItem' : 'gridItem visible'}
                   key={idx}
                   src={pic}
                   onLoad={handleLoaded}
