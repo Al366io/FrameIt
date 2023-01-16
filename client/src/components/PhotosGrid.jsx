@@ -39,6 +39,10 @@ function PhotosGrid({ id }) {
   }, []);
 
   function handleLoaded() {
+    let coll = document.getElementsByClassName('gridItem');
+    coll.forEach((el) => {
+      el.style.display = 'block';
+    });
     setLoading(false);
   }
 
@@ -51,32 +55,36 @@ function PhotosGrid({ id }) {
 
   return (
     <div>
-      {loading ? (
-        <div className="loaderWrap">
-          <Grid
-            height="80"
-            width="80"
-            color="#8139d1"
-            ariaLabel="grid-loading"
-            radius="12.5"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-        </div>
-      ) : (
-        <div className="container">
-          {!photos.length ? (
-            <h3>No pics for now</h3>
-          ) : (
-            <div className="gridContainer">
-              {photos.map((pic, idx) => {
-                return <img className="gridItem" key={idx} src={pic} onLoad={handleLoaded}></img>;
-              })}
-            </div>
-          )}
-        </div>
-      )}
+      <div className="loaderWrap">
+        <Grid
+          height="80"
+          width="80"
+          color="#8139d1"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+      <div className="container">
+        {!photos.length ? (
+          <h3>No pics for now</h3>
+        ) : (
+          <div className="gridContainer">
+            {photos.map((pic, idx) => {
+              return (
+                <img
+                  className="gridItem"
+                  key={idx}
+                  src={pic}
+                  onLoad={handleLoaded}
+                ></img>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -149,6 +149,7 @@
 }
 
 .gridItem {
+  display: none;
   border-radius: 5px;
   object-fit: cover;
   aspect-ratio: 1;
