@@ -7,6 +7,7 @@ import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
 import Navbar from '../components/Navbar';
 import { ProgressBar } from 'react-loader-spinner';
+import PhotosGrid from '../components/PhotosGrid';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
@@ -111,7 +112,7 @@ function PartyRoomPH() {
               </button>
             </>
           ) : (
-            ''
+            <PhotosGrid/>
           )}
         </div>
       )}
