@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Grid } from 'react-loader-spinner';
 import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
+import { downloadFile } from 'image-conversion';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
 
@@ -63,6 +64,10 @@ function PhotosGrid({ id }) {
     setModalUrl('');
   }
 
+  async function downloadIt() {
+    downloadFile(photoTaken, generateRandomString(8));
+  }
+
   return (
     <div>
       <div
@@ -71,6 +76,9 @@ function PhotosGrid({ id }) {
       >
         {/* <button className='closeModal' onClick={closeModal}>X</button> */}
         <img src={modalUrl} className="innerModal"></img>
+        <button className="logButton" onClick={downloadIt}>
+          DOWNLOAD ⬇️
+        </button>
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid

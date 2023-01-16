@@ -300,22 +300,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(107, 107, 107, 0.507);
+  flex-direction: column;
+  background-color: rgba(107, 107, 107, 0.65);
   z-index: 100;
 }
 
 .innerModal {
-  width: 70%;
+  border-radius: 10px;
+  width: 80%;
   z-index: 200;
-}
-
-.closeModal {
-  height: 30px;
-  width: 30px;
-  border-radius: 100px;
-  z-index: 300;
-  top: 0;
-  right: 0;
 }
 
 .vibrate {
