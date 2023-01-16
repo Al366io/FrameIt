@@ -72,7 +72,7 @@ function PhotosGrid({ id }) {
       >
         {/* <button className='closeModal' onClick={closeModal}>X</button> */}
         <img src={modalUrl} className="innerModal"></img>
-        <a href={modalUrl} className="logButton" download> DOWNLOAD ⬇️ </a>
+        {/* <a href={modalUrl} className="logButton" download> DOWNLOAD ⬇️ </a> */}
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid
