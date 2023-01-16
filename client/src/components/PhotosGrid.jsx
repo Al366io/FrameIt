@@ -66,7 +66,7 @@ function PhotosGrid({ id }) {
   return (
     <div>
       <div className={modalOpen ? 'modal scale-in-center' : 'modal invisible'}>
-        <span onClick={closeModal}>X</span>
+        <button className='closeModal' onClick={closeModal}>X</button>
         <img src={modalUrl}></img>
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>

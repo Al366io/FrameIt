@@ -301,11 +301,21 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(107, 107, 107, 0.507);
-  z-index: 999;
+  z-index: 100;
 }
 
 .innerModal {
-  z-index: 9999;
+  width: 70%;
+  z-index: 200;
+}
+
+.closeModal {
+  height: 30px;
+  width: 30px;
+  border-radius: 100px;
+  z-index: 300;
+  top: 0;
+  right: 0;
 }
 
 .vibrate {
