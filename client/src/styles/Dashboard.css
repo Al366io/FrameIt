@@ -1,46 +1,4 @@
 /* START OF ANIMATION KEYFRAMES */
-@-webkit-keyframes slide-fwd-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  100% {
-    -webkit-transform: translateZ(160px);
-    transform: translateZ(160px);
-  }
-}
-@keyframes slide-fwd-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  100% {
-    -webkit-transform: translateZ(160px);
-    transform: translateZ(160px);
-  }
-}
-
-@-webkit-keyframes slide-bck-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  100% {
-    -webkit-transform: translateZ(-400px);
-    transform: translateZ(-400px);
-  }
-}
-@keyframes slide-bck-center {
-  0% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  100% {
-    -webkit-transform: translateZ(-400px);
-    transform: translateZ(-400px);
-  }
-}
-
 @-webkit-keyframes vibrate-1 {
   0% {
     -webkit-transform: translate(0);
@@ -371,16 +329,4 @@
 .vibrate {
   -webkit-animation: vibrate-1 0.3s linear infinite both;
   animation: vibrate-1 0.3s linear infinite both;
-}
-
-.slide-fwd {
-  -webkit-animation: slide-fwd-center 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    both;
-  animation: slide-fwd-center 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-.slide-bck {
-  -webkit-animation: slide-bck-center 0.45s cubic-bezier(0.47, 0, 0.745, 0.715)
-    both;
-  animation: slide-bck-center 0.45s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 }

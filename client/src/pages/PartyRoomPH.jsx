@@ -20,18 +20,21 @@ function PartyRoomPH() {
 
   async function sendIt(e) {
     e.preventDefault();
-    setLoading(true);
-    const input = document.getElementById('foto').files[0];
-    const url = await sendImage(photoTaken, id);
-    if (url) {
-      // alert('Sent :D');
-      input.value = null;
-      await sendUrlToDb(url, id);
-      setSomething(false);
-      setFileUploaded(false);
-      setLoading(false);
-    } else {
-      alert('something went wrong :C');
+    // to prevent from doing this action twice if pressing the send button while sending
+    if (!loading) {
+      setLoading(true);
+      const input = document.getElementById('foto').files[0];
+      const url = await sendImage(photoTaken, id);
+      if (url) {
+        // alert('Sent :D');
+        input.value = null;
+        await sendUrlToDb(url, id);
+        setSomething(false);
+        setFileUploaded(false);
+        setLoading(false);
+      } else {
+        alert('something went wrong :C');
+      }
     }
   }
 
@@ -65,7 +68,7 @@ function PartyRoomPH() {
         <form id="formSend" onSubmit={sendIt}>
           <div className="fotoWrap">
             <label htmlFor="foto" className="mainButton">
-              Take Photo 📸
+              {fileUploaded ? 'Take another One 📸' : 'Take Photo 📸'}
             </label>
             {/* <label>Click to take Photo</label> */}
           </div>
@@ -91,8 +94,8 @@ function PartyRoomPH() {
       {loading ? (
         <div className="secondHalf">
           <ProgressBar
-            height="80"
-            width="80"
+            height="90"
+            width="90"
             ariaLabel="progress-bar-loading"
             wrapperStyle={{}}
             wrapperClass="progress-bar-wrapper"
@@ -108,11 +111,11 @@ function PartyRoomPH() {
                 <img className="imagePreviewActually" src={something}></img>
               </div>
               <button className="logButton" onClick={downloadIt}>
-                DOWNLOAD
+                DOWNLOAD ⬇️
               </button>
             </>
           ) : (
-            <PhotosGrid id={id}/>
+            <PhotosGrid id={id} />
           )}
         </div>
       )}

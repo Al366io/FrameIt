@@ -82,7 +82,7 @@ function PhotosGrid({ id }) {
           {photos.map((pic, idx) => {
             return (
               <img
-                className={loading ? 'gridItem' : modalOpen ? 'gridItem slide-fwd visible ' : 'gridItem visible'}
+                className={loading ? 'gridItem' : 'gridItem visible'}
                 key={idx}
                 src={pic}
                 onLoad={handleLoaded}
