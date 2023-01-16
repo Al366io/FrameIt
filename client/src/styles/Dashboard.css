@@ -177,3 +177,7 @@
 .visible {
   display: block!important;
 }
+
+.invisible {
+  display: none!important;
+}
