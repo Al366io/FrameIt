@@ -66,7 +66,7 @@ function PhotosGrid({ id }) {
         />
       </div>
       <div className="container">
-      <div id="track-separator"></div>
+      {/* <div id="track-separator"></div> */}
         {/* {!photos.length ? (
           <h3>No pics for now</h3>
         ) : ( */}
