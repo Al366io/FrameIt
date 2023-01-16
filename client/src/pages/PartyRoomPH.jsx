@@ -25,12 +25,10 @@ function PartyRoomPH() {
     if (url) {
       // alert('Sent :D');
       input.value = null;
+      await sendUrlToDb(url, id);
       setSomething(false);
       setFileUploaded(false);
-      await sendUrlToDb(url, id);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
+      setLoading(false);
     } else {
       alert('something went wrong :C');
     }
