@@ -62,6 +62,9 @@ function PhotosGrid({ id }) {
 
   return (
     <div>
+      <div className={modalOpen ? 'modal' : 'modal invisible'}>
+        <span onClick={closeModal}>X</span>
+      </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid
           height="80"
@@ -74,15 +77,12 @@ function PhotosGrid({ id }) {
           visible={true}
         />
       </div>
-      <div className={ modalOpen? 'modal' : 'modal invisible'}>
-        <span onClick={closeModal}>X</span>
-      </div>
       <div className="container">
         <div className="gridContainer">
           {photos.map((pic, idx) => {
             return (
               <img
-                className={loading ? 'gridItem' : 'gridItem visible'}
+                className={loading ? 'gridItem' : modalOpen ? 'gridItem slide-fwd visible ' : 'gridItem visible'}
                 key={idx}
                 src={pic}
                 onLoad={handleLoaded}
