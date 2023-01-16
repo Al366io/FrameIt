@@ -83,7 +83,7 @@ function PartyRoomOwner() {
               TAKE PICS FOR UR PARTY
             </button>
           </div>
-          <PhotosGrid id={id}></PhotosGrid>
+          <PhotosGrid id={id}/>
         </>
       ) : (
         ''

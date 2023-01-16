@@ -41,7 +41,7 @@ function PhotosGrid({ id }) {
   function handleLoaded() {
     setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 700);
   }
 
   useEffect(() => {
