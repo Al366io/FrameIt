@@ -64,10 +64,6 @@ function PhotosGrid({ id }) {
     setModalUrl('');
   }
 
-  async function downloadIt() {
-    downloadFile(photoTaken, generateRandomString(8));
-  }
-
   return (
     <div>
       <div
@@ -76,9 +72,7 @@ function PhotosGrid({ id }) {
       >
         {/* <button className='closeModal' onClick={closeModal}>X</button> */}
         <img src={modalUrl} className="innerModal"></img>
-        <button className="logButton" onClick={downloadIt}>
-          DOWNLOAD ⬇️
-        </button>
+        <a href={modalUrl} className="logButton" download> DOWNLOAD ⬇️ </a>
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid
