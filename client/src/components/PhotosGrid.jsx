@@ -42,7 +42,7 @@ function PhotosGrid({id}) {
     setPhotos(buffer);
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1500);
   }, [buffer]);
 
   return (

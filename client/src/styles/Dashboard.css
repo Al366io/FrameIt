@@ -116,6 +116,9 @@
 }
 
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 93.5rem;
   margin: 2% auto;
 }
@@ -134,6 +137,7 @@
   width: 100%;
   cursor: pointer;
   position: relative;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 #errorContainer {
