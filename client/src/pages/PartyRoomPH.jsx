@@ -15,7 +15,7 @@ function PartyRoomPH() {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
   const [photoTaken, setPhotoTaken] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function sendIt(e) {
     e.preventDefault();
@@ -98,7 +98,7 @@ function PartyRoomPH() {
             wrapperStyle={{}}
             wrapperClass="progress-bar-wrapper"
             borderColor="#8139d1"
-            barColor="#ead9ed"
+            barColor="#e5b9ed"
           />
         </div>
       ) : (
