@@ -216,3 +216,26 @@
 .invisible {
   display: none !important;
 }
+
+.askConfirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.wrapConfirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmYes {
+  color:rgb(0, 0, 0);
+  background-color: green;
+}
+
+.confirmNo {
+  color:rgb(0, 0, 0);
+  background-color: red;
+}

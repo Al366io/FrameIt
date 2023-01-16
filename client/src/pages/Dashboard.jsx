@@ -20,6 +20,7 @@ function Dashboard() {
   const [partyId, setPartyId] = useState('');
   const [isUp, setIsUp] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [askConfirm, setAskConfirm] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,7 +61,11 @@ function Dashboard() {
       navigate(`/party/${partyId}`);
     }
   };
+  const confirm = () => {
+    setAskConfirm(true);
+  }
   const handleDelete = async () => {
+    setAskConfirm(false);
     const done = await deleteParty(partyId);
     if (done == 'Not Found') {
       return;
@@ -108,6 +113,11 @@ function Dashboard() {
                         <button className="mainButton" onClick={handleDelete}>
                           DELETE CURRENT PARTY
                         </button>
+                        <div className={askConfirm ? 'askConfirm' : 'invisible askConfirm'}>
+                          ARE YOU SURE?
+                          <button className='confirmYes'>YES</button>
+                          <button className='confirmNo'>NO</button>
+                        </div>
                       </div>
                     ) : (
                       <button onClick={handleCreate} className="logButton">
