@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { MagnifyingGlass, Grid } from 'react-loader-spinner';
+import { Grid } from 'react-loader-spinner';
 import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
 import { io } from 'socket.io-client';
@@ -49,16 +49,6 @@ function PhotosGrid({ id }) {
     <div>
       {loading ? (
         <div className="loaderWrap">
-          {/* <MagnifyingGlass
-            visible={true}
-            height="90"
-            width="90"
-            ariaLabel="MagnifyingGlass-loading"
-            wrapperStyle={{}}
-            wrapperClass="MagnifyingGlass-wrapper"
-            glassColor="#ecbef7"
-            color="#8139d1"
-          /> */}
           <Grid
             height="80"
             width="80"

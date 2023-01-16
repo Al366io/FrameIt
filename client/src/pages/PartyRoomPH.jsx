@@ -6,6 +6,7 @@ import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
 import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
 import Navbar from '../components/Navbar';
+import { ProgressBar } from 'react-loader-spinner';
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
@@ -14,19 +15,24 @@ function PartyRoomPH() {
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
   const [photoTaken, setPhotoTaken] = useState({});
+  const [loading, setLoading] = useState(true);
 
   async function sendIt(e) {
     e.preventDefault();
+    setLoading(true);
     const input = document.getElementById('foto').files[0];
     const url = await sendImage(photoTaken, id);
     if (url) {
-      alert('Sent :D');
+      // alert('Sent :D');
       input.value = null;
       setSomething(false);
       setFileUploaded(false);
-      sendUrlToDb(url, id);
+      await sendUrlToDb(url, id);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     } else {
-      alert('something went wrong')
+      alert('something went wrong :C');
     }
   }
 
@@ -83,20 +89,34 @@ function PartyRoomPH() {
           )}
         </form>
       </div>
-      <div className="secondHalf">
-        {fileUploaded ? (
-          <>
-            <div className="imagePreview">
-              <img className="imagePreviewActually" src={something}></img>
-            </div>
-            <button className="logButton" onClick={downloadIt}>
-              DOWNLOAD
-            </button>
-          </>
-        ) : (
-          ''
-        )}
-      </div>
+      {loading ? (
+        <div className="secondHalf">
+          <ProgressBar
+            height="80"
+            width="80"
+            ariaLabel="progress-bar-loading"
+            wrapperStyle={{}}
+            wrapperClass="progress-bar-wrapper"
+            borderColor="#8139d1"
+            barColor="#ead9ed"
+          />
+        </div>
+      ) : (
+        <div className="secondHalf">
+          {fileUploaded ? (
+            <>
+              <div className="imagePreview">
+                <img className="imagePreviewActually" src={something}></img>
+              </div>
+              <button className="logButton" onClick={downloadIt}>
+                DOWNLOAD
+              </button>
+            </>
+          ) : (
+            ''
+          )}
+        </div>
+      )}
     </div>
   );
 }
