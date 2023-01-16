@@ -68,7 +68,6 @@ function Dashboard() {
     setPartyId('');
     return;
   };
-
   return (
     <div className="App">
       <div className="dashboardWrapper">

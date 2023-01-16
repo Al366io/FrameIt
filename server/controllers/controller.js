@@ -63,8 +63,8 @@ exports.createParty = async (req, res) => {
     // here call the function that will set the interval to update this particular room
     let interval = await this.triggerSocket(party.socket_room_id, id);
     mapOfIntervals[id] = interval;
-    res.send(id);
     res.status(200);
+    res.send(id);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -79,8 +79,8 @@ exports.checkIfUserHasParty = async (req, res) => {
     });
     if (user.party_id) {
       // console.log('found');
-      res.send(user.party_id);
       res.status(200);
+      res.send(user.party_id);
     } else {
       // user in db, but no partyId
       // console.log('not found');
@@ -113,8 +113,8 @@ exports.deleteParty = async (req, res) => {
         party_id: id
       }
     })
-    res.send(true);
     res.status(200);
+    res.send(true);
   } catch (error) {
     // one of the two not found so 404
     res.sendStatus(404);
@@ -147,8 +147,8 @@ exports.insertUrlInDb = async (req, res) => {
       }
     );
     // all good
-    res.send(true);
     res.status(200);
+    res.send(true);
   } catch (error) {
     res.sendStatus(404);
   }

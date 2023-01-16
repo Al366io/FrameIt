@@ -15,7 +15,7 @@ function Home() {
       navigate(`/dashboard`);
     }
   });
-
+  // TODO: HERE DO A: "JOIN A PARTY" BUTTON -> OPEN INPUT, you type in the code and you get redirected to that party room.
   return (
     <div className="App">
       <div className="homeWrapper">
