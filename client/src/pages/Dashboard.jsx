@@ -116,7 +116,7 @@ function Dashboard() {
                         <div className={askConfirm ? 'askConfirm' : 'invisible askConfirm'}>
                           ARE YOU SURE?
                           <div className='wrapConfirm'>
-                            <button className='confirmYes' onClick={handleDelete}>YES</button>
+                            <button className='confirmYes vibrate' onClick={handleDelete}>YES</button>
                             <button className='confirmNo' onClick={() => setAskConfirm(false)}>NO</button>
                           </div>
                         </div>
