@@ -232,8 +232,8 @@
 
 .confirmYes {
   color:rgb(0, 0, 0);
-  background: rgb(57,209,174);
-  background: linear-gradient(90deg, rgba(57,209,174,1) 0%, rgba(220,192,255,1) 100%);
+  background: rgb(54,216,81);
+  background: linear-gradient(90deg, rgba(54,216,81,1) 29%, rgba(243,233,255,1) 100%);
   font-weight: 00;
   margin: 5px;
   letter-spacing: 3px;
@@ -246,8 +246,8 @@
 .confirmNo {
   margin: 5px;
   color:rgb(0, 0, 0);
-  background: rgb(209,57,57);
-  background: linear-gradient(90deg, rgba(209,57,57,1) 0%, rgba(220,192,255,1) 100%);
+  background: rgb(242,34,34);
+  background: linear-gradient(90deg, rgba(242,34,34,1) 29%, rgba(243,233,255,1) 100%);
   font-weight: 00;
   letter-spacing: 3px;
   padding: 10px 30px 10px 30px;
