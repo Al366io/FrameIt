@@ -86,7 +86,7 @@ function PhotosGrid({ id }) {
                 key={idx}
                 src={pic}
                 onLoad={handleLoaded}
-                onClick={openModal(pic)}
+                onClick={() => openModal(pic)}
               ></img>
             );
           })}
