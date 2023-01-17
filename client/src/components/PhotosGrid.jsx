@@ -79,11 +79,11 @@ function PhotosGrid({ id }) {
   return (
     <div>
       <div
-        className={modalOpen ? 'modal scale-in-center' : 'modal invisible'}
+        className={modalOpen ? 'modal' : 'modal invisible'}
         onClick={closeModal}
       >
         <img src={modalUrl} className="innerModal"></img>
-        <button className="logButton" onClick={downloadImage}>
+        <button className="logButton zidx" onClick={downloadImage}>
           DOWNLOAD ⬇️
         </button>
       </div>
