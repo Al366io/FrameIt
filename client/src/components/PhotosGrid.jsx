@@ -5,7 +5,7 @@ import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
-import { generateRandomString } from '../../../server/helpers/helpers';
+import { generateRandomString } from '../ApiServices';
 
 /*
   Here you:
