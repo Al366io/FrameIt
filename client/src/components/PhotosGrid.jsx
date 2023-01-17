@@ -6,6 +6,7 @@ import { getSocketRoomId } from '../ApiServices';
 import { downloadFile } from 'image-conversion';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
+import { compress, downloadFile } from 'image-conversion';
 
 /*
   Here you:
@@ -49,9 +50,6 @@ function PhotosGrid({ id }) {
 
   useEffect(() => {
     setPhotos(buffer);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 2200);
   }, [buffer]);
 
   function openModal(picUrl) {
@@ -64,15 +62,32 @@ function PhotosGrid({ id }) {
     setModalUrl('');
   }
 
+  function downloadImage(url) {
+    fetch(url, {
+      mode: 'no-cors',
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        let blobUrl = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.download = url.replace(/^.*[\\\/]/, '');
+        a.href = blobUrl;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+  }
+
   return (
     <div>
       <div
         className={modalOpen ? 'modal scale-in-center' : 'modal invisible'}
         onClick={closeModal}
       >
-        {/* <button className='closeModal' onClick={closeModal}>X</button> */}
         <img src={modalUrl} className="innerModal"></img>
-        {/* <a href={modalUrl} className="logButton" download> DOWNLOAD ⬇️ </a> */}
+        <button className="logButton" onClick={downloadImage}>
+          DOWNLOAD ⬇️
+        </button>
       </div>
       <div className={loading ? 'loaderWrap' : 'invisible'}>
         <Grid

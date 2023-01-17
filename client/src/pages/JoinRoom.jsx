@@ -1,9 +1,6 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import '../styles/Dashboard.css';
 
 // reachable at /party/:id/ph

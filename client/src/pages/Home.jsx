@@ -2,9 +2,7 @@ import React from 'react';
 import '../styles/Home.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import { useEffect } from 'react';
-import { useState } from 'react';
 
 function Home() {
   const { isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0();

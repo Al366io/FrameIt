@@ -68,9 +68,8 @@ function PartyRoomPH() {
         <form id="formSend" onSubmit={sendIt}>
           <div className="fotoWrap">
             <label htmlFor="foto" className="mainButton">
-              {fileUploaded ? 'Take another One 📸' : 'Take Photo 📸'}
+              {fileUploaded ? 'Take another One 📸' : 'TAKE PHOTO 📸'}
             </label>
-            {/* <label>Click to take Photo</label> */}
           </div>
           <input
             id="foto"
