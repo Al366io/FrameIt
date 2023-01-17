@@ -26,7 +26,6 @@ function PartyRoomPH() {
       const input = document.getElementById('foto').files[0];
       const url = await sendImage(photoTaken, id);
       if (url) {
-        // alert('Sent :D');
         input.value = null;
         await sendUrlToDb(url, id);
         setSomething(false);
@@ -48,7 +47,7 @@ function PartyRoomPH() {
     let photo = input.files[0];
     if (photo) {
       if (!compressed) {
-        compressed = await compress(photo, 0.3);
+        compressed = await compress(photo, 0.4);
       }
       setFileUploaded(true);
       fileReader.readAsDataURL(compressed);
