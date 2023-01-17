@@ -5,6 +5,7 @@ import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
+import { generateRandomString } from '../../../server/helpers/helpers';
 
 /*
   Here you:
@@ -60,20 +61,17 @@ function PhotosGrid({ id }) {
     setModalUrl('');
   }
 
-  function downloadImage(url) {
-    fetch(url, {
-      mode: 'no-cors',
-    })
-      .then((response) => response.blob())
-      .then((blob) => {
-        let blobUrl = window.URL.createObjectURL(blob);
-        let a = document.createElement('a');
-        a.download = url.replace(/^.*[\\\/]/, '');
-        a.href = blobUrl;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      });
+  async function downloadImage(imageSrc) {
+    const image = await fetch(imageSrc)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+  
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = generateRandomString(8);
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   return (
