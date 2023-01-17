@@ -308,7 +308,6 @@
 .innerModal {
   animation: scale-in-center ease-in-out 0.3s;
   object-fit: cover;
-  aspect-ratio: 1;
   max-height: 80vh;
   max-width: 80vw;
   border-radius: 10px;
