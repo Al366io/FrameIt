@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+const { DB_CONNECTION_STRING } = require("../config");
 const sequelize = new Sequelize(
-  'postgres://frameit:lol123!@localhost:5432/frameitdb',
+  process.env.DB_CONNECTION_STRING,
   {
     dialect: 'postgres',
     logging: false,
