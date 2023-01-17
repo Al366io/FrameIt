@@ -3,6 +3,7 @@ import '../styles/Home.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Footer from '../components/Footer';
 
 function Home() {
   const { isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0();
@@ -42,6 +43,7 @@ function Home() {
             <span>Enjoy your memories</span>
           </div>
         </div>
+        <Footer/>
       </div>
     </div>
   );

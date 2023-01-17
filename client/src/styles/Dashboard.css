@@ -248,3 +248,47 @@ a {
   animation: scale-in-center ease-in-out 0.3s;
   z-index: 200;
 }
+
+.footer {
+  color: rgb(240, 193, 240);
+  background-color: black;
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.footer p {
+  margin: 5px 5px ;
+}
+
+.footerInfo {
+  margin: 5px;
+}
+
+.footerLinks {
+  margin: 10px 0;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media screen and (min-width: 900px) {
+  .footerInfo {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0;
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+  }
+}
+.icon {
+  width: 40px;
+}

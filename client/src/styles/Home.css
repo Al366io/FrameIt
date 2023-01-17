@@ -40,7 +40,6 @@
 .bodyWrapper {
   display: flex;
   height: 100vh;
-  justify-content: space-around;
   flex-direction: column;
   gap: 30px;
   background: rgba(154, 70, 169, 0.492);

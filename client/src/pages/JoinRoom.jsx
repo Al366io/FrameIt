@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 import '../styles/Dashboard.css';
 
 // reachable at /party/:id/ph
@@ -41,6 +42,7 @@ function JoinRoom() {
             <span>Enjoy your memories</span>
           </div>
         </div>
+        <Footer/>
       </div>
     </div>
   );
