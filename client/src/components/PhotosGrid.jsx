@@ -3,10 +3,8 @@ import { useEffect } from 'react';
 import { Grid } from 'react-loader-spinner';
 import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
-import { downloadFile } from 'image-conversion';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
-import { compress, downloadFile } from 'image-conversion';
 
 /*
   Here you:
