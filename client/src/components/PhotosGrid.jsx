@@ -20,8 +20,29 @@ function PhotosGrid({ id }) {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState('');
+  const animations = [
+    'bounce-in-top',
+    'slide-in-elliptic-top-fwd',
+    'slide-in-bck-center',
+    'slide-in-fwd-center',
+    'slide-in-top',
+  ];
 
+  let rand = 0;
+  function randomizeAnimations() {
+    let min = 0;
+    let max = animations.length
+    let difference = max - min;
+    let b = Math.random();
+    b = Math.floor(b * difference);
+    b = b + min;
+    rand = b;
+  }
   useEffect(() => {
+    setInterval(() => {
+      randomizeAnimations()
+    }, 1000);
+
     setTimeout(() => {
       setLoading(false);
     }, 7000);
@@ -63,16 +84,16 @@ function PhotosGrid({ id }) {
   }
 
   async function downloadImage(imageSrc) {
-    const image = await fetch(imageSrc)
-    const imageBlog = await image.blob()
-    const imageURL = URL.createObjectURL(imageBlog)
-  
-    const link = document.createElement('a')
-    link.href = imageURL
+    const image = await fetch(imageSrc);
+    const imageBlog = await image.blob();
+    const imageURL = URL.createObjectURL(imageBlog);
+
+    const link = document.createElement('a');
+    link.href = imageURL;
     link.download = generateRandomString(8);
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   return (
@@ -82,7 +103,10 @@ function PhotosGrid({ id }) {
         onClick={closeModal}
       >
         <img src={modalUrl} className="innerModal"></img>
-        <button className="logButton zidx" onClick={() => downloadImage(modalUrl)}>
+        <button
+          className={`logButton zidx ${animations[rand]}`}
+          onClick={() => downloadImage(modalUrl)}
+        >
           DOWNLOAD ⬇️
         </button>
       </div>
