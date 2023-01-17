@@ -5,12 +5,15 @@ import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { ProgressBar } from 'react-loader-spinner';
 import PhotosGrid from '../components/PhotosGrid';
 
+
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
+  const navigate = useNavigate();
   const fileReader = new FileReader();
   const { id } = useParams();
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -18,7 +21,7 @@ function PartyRoomPH() {
   const [photoTaken, setPhotoTaken] = useState({});
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth0();
-  
+
   async function sendIt(e) {
     e.preventDefault();
     // to prevent from doing this action twice if pressing the send button while sending
@@ -59,8 +62,8 @@ function PartyRoomPH() {
     } else setFileUploaded(false);
   }
 
-  function asd(){
-    console.log(isAuthenticated);
+  function goBack() {
+    navigate(`/party/${id}`);
   }
   return (
     <div className="dashboardWrapper">
@@ -68,7 +71,7 @@ function PartyRoomPH() {
       <div className="firstHalf">
         {' '}
         ROOM #{id}
-        <button onClick={asd}></button>
+        {isAuthenticated ? <button onClick={goBack} className="mainButton">Back 2 the Lobby</button> : ''}
         <form id="formSend" onSubmit={sendIt}>
           <div className="fotoWrap">
             <label htmlFor="foto" className="mainButton">
