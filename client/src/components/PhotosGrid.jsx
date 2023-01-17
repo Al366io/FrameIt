@@ -102,7 +102,7 @@ function PhotosGrid({ id }) {
         className={modalOpen ? 'modal' : 'modal invisible'}
         onClick={closeModal}
       >
-        <img src={modalUrl} className="innerModal"></img>
+        <img src={modalUrl} className={`innerModal ${animations[rand]}`}></img>
         <button
           className={`logButton zidx ${animations[rand]}`}
           onClick={() => downloadImage(modalUrl)}
