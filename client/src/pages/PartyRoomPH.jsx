@@ -18,14 +18,7 @@ function PartyRoomPH() {
   const [photoTaken, setPhotoTaken] = useState({});
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth0();
-
-  useEffect(()=>{
-    setInterval(() => {
-      console.log(isAuthenticated);
-    }, 2000);
-  })
   
-
   async function sendIt(e) {
     e.preventDefault();
     // to prevent from doing this action twice if pressing the send button while sending
@@ -66,12 +59,16 @@ function PartyRoomPH() {
     } else setFileUploaded(false);
   }
 
+  function asd(){
+    console.log(isAuthenticated);
+  }
   return (
     <div className="dashboardWrapper">
       <Navbar></Navbar>
       <div className="firstHalf">
         {' '}
         ROOM #{id}
+        <button onClick={asd}></button>
         <form id="formSend" onSubmit={sendIt}>
           <div className="fotoWrap">
             <label htmlFor="foto" className="mainButton">
