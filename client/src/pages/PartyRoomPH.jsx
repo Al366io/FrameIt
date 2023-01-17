@@ -1,8 +1,8 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { generateRandomString, sendImage, sendUrlToDb } from '../ApiServices';
-// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
 import Navbar from '../components/Navbar';
@@ -17,6 +17,14 @@ function PartyRoomPH() {
   const [something, setSomething] = useState('');
   const [photoTaken, setPhotoTaken] = useState({});
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuth0();
+
+  useEffect(()=>{
+    setInterval(() => {
+      console.log(isAuthenticated);
+    }, 2000);
+  })
+  
 
   async function sendIt(e) {
     e.preventDefault();
