@@ -1,11 +1,12 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Grid } from 'react-loader-spinner';
-import '../styles/Dashboard.css';
 import { getSocketRoomId } from '../ApiServices';
 import { io } from 'socket.io-client';
 import { useState } from 'react';
 import { generateRandomString } from '../ApiServices';
+import '../styles/animations.css';
+import '../styles/Dashboard.css';
 
 /*
   Here you:

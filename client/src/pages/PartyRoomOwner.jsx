@@ -9,6 +9,7 @@ import PhotosGrid from '../components/PhotosGrid';
 import Navbar from '../components/Navbar';
 
 import '../styles/Dashboard.css';
+import '../styles/animations.css';
 
 function PartyRoomOwner() {
   const { id } = useParams();
