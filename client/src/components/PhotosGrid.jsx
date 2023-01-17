@@ -29,7 +29,7 @@ function PhotosGrid({ id }) {
   ];
 
   let rand = 0;
-  function randomizeAnimations() {
+  function randomizeNumber() {
     let min = 0;
     let max = animations.length
     let difference = max - min;
@@ -38,10 +38,11 @@ function PhotosGrid({ id }) {
     b = b + min;
     rand = b;
   }
+  function randomAnimation() {
+    randomizeNumber();
+    return animations[rand].toString();
+  }
   useEffect(() => {
-    setInterval(() => {
-      randomizeAnimations()
-    }, 1000);
 
     setTimeout(() => {
       setLoading(false);
@@ -102,7 +103,7 @@ function PhotosGrid({ id }) {
         className={modalOpen ? 'modal' : 'modal invisible'}
         onClick={closeModal}
       >
-        <img src={modalUrl} className={`innerModal ${animations[rand]}`}></img>
+        <img src={modalUrl} className={`innerModal ${randomAnimation()}`}></img>
         <button
           className={`logButton zidx ${animations[rand]}`}
           onClick={() => downloadImage(modalUrl)}
