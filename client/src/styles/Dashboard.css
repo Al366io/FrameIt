@@ -227,7 +227,7 @@
 }
 
 .innerModal {
-  /* animation: scale-in-center ease-in-out 0.3s; */
+  animation: scale-in-center ease-in-out 0.3s;
   object-fit: cover;
   max-height: 80vh;
   max-width: 80vw;
@@ -245,6 +245,6 @@ a {
 }
 
 .zidx {
-  /* animation: scale-in-center ease-in-out 0.3s; */
+  animation: scale-in-center ease-in-out 0.3s;
   z-index: 200;
 }

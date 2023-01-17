@@ -20,30 +20,8 @@ function PhotosGrid({ id }) {
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState('');
-  const animations = [
-    'bounce-in-top',
-    'slide-in-elliptic-top-fwd',
-    'slide-in-bck-center',
-    'slide-in-fwd-center',
-    'slide-in-top',
-  ];
 
-  let rand = 0;
-  function randomizeNumber() {
-    let min = 0;
-    let max = animations.length
-    let difference = max - min;
-    let b = Math.random();
-    b = Math.floor(b * difference);
-    b = b + min;
-    rand = b;
-  }
-  function randomAnimation() {
-    randomizeNumber();
-    return animations[rand].toString();
-  }
   useEffect(() => {
-
     setTimeout(() => {
       setLoading(false);
     }, 7000);
@@ -103,9 +81,9 @@ function PhotosGrid({ id }) {
         className={modalOpen ? 'modal' : 'modal invisible'}
         onClick={closeModal}
       >
-        <img src={modalUrl} className={`innerModal ${randomAnimation()}`}></img>
+        <img src={modalUrl} className="innerModal"></img>
         <button
-          className={`logButton zidx ${animations[rand]}`}
+          className="logButton zidx"
           onClick={() => downloadImage(modalUrl)}
         >
           DOWNLOAD ⬇️
