@@ -83,7 +83,7 @@ function PhotosGrid({ id }) {
         onClick={closeModal}
       >
         <img src={modalUrl} className="innerModal"></img>
-        <button className="logButton zidx" onClick={downloadImage}>
+        <button className="logButton zidx" onClick={downloadImage(modalUrl)}>
           DOWNLOAD ⬇️
         </button>
       </div>
