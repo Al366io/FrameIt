@@ -26,8 +26,8 @@ function PartyRoomOwner() {
 
     async function fetchRoom(){
       const exist = await checkRoom(id)
-      console.log(exist);
-      setRoomExists(exist);
+      console.log(exist.exists);
+      setRoomExists(exist.exist);
     }
     fetchRoom();
 
