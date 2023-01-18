@@ -6,6 +6,7 @@ const {
   deleteParty,
   insertUrlInDb,
   getSocketRoom,
+  checkIfPartyExists,
 } = require('./controllers/controller');
 
 // To check if the user logged in has already an instance in the db, and if not it creates one for him 
@@ -25,6 +26,7 @@ router.get('/users/info/party/:email', checkIfUserHasParty);
 // TODO: ADD SECURITY TO THIS THING! ONLY OWNER SHOULD BE ABLE TO DELETE
 router.delete('/party', deleteParty);
 
+router.get('/party', checkIfPartyExists)
 // // NOT NEEDED ANYMORE; USING CLOUDINARY.
 // router.post('/party/add/:id', saveIncomingPhoto);
 

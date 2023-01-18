@@ -250,8 +250,10 @@ a {
 }
 
 .footer {
-  color: rgb(240, 193, 240);
-  background-color: black;
+  padding-top: 5px;
+  border-top: solid 2px rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  background-color: rgb(246, 202, 246);
   font-size: small;
   display: flex;
   justify-content: center;

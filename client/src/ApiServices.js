@@ -115,3 +115,15 @@ export async function getSocketRoomId (id) {
     return '';
   }
 }
+
+export async function checkRoom (id) {
+  try {
+    const response = fetch(`https://www.frameit.social/party/${id}`).then(
+      (response) => response.json()
+    ).then((res) => res)
+    return response.exists;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+} 

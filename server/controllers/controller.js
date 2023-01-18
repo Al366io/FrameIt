@@ -3,7 +3,7 @@ const { generateRandomString, ensureExists } = require('../helpers/helpers');
 const path = require('path');
 
 // obj that will map the intervals of the parties. -> mapOfIntervals = { partyId: interval }
-let mapOfIntervals = {}
+let mapOfIntervals = {};
 
 async function createIfNotThere(user) {
   const alreadyInDb = await AuthTableOwner.findOne({
@@ -110,9 +110,9 @@ exports.deleteParty = async (req, res) => {
     // delete the row of that party from the Party table
     await Party.destroy({
       where: {
-        party_id: id
-      }
-    })
+        party_id: id,
+      },
+    });
     res.status(200);
     res.send(true);
   } catch (error) {
@@ -195,13 +195,32 @@ exports.startSetIntervals = async () => {
   // and call socketIoUpdateParty on them.
   let parties = await Party.findAll();
   for (let party of parties) {
-    let id = party.dataValues.party_id
+    let id = party.dataValues.party_id;
     // call the function, wait for the id of the interval, then save in the party table
     let interval = await this.triggerSocket(
-      party.dataValues.socket_room_id, id);
+      party.dataValues.socket_room_id,
+      id
+    );
 
     // save the intervalId into the map of Intervals.
     mapOfIntervals[id] = interval;
   }
   return;
+};
+
+exports.checkIfPartyExists = async (req, res) => {
+  try {
+    const id = req.params.id;
+    let partyObj = await Party.findOne({ where: { party_id: id } });
+    if (partyObj) {
+      res.status(200);
+      res.send({ exists: true });
+    } else {
+      res.status(404);
+      res.send({ exists: false });
+    }
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
 };

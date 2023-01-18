@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar';
 import { ProgressBar } from 'react-loader-spinner';
 import PhotosGrid from '../components/PhotosGrid';
 
+// TODO: ADD PASSWORD TO PRIVATE ROOMS 
 
 // reachable at /party/:id/ph/add
 function PartyRoomPH() {
