@@ -121,7 +121,7 @@ export async function checkRoom (id) {
     const response = fetch(`https://www.frameit.social/party/${id}`).then(
       (response) => response.json()
     ).then((res) => res)
-    return response.exists;
+    return response;
   } catch (error) {
     console.log(error);
     return false;
