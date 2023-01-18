@@ -16,13 +16,13 @@ function PartyRoomOwner() {
   const [copied, setCopied] = useState(false);
   const [canShare, setCanShare] = useState(false);
   const navigate = useNavigate();
-  const [roomExists, setRoomExists] = useState(false);
+  const [roomExists, setRoomExists] = useState(true);
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    // if (!isAuthenticated) {
-    //   navigate(`/`);
-    // }
+    if (!isAuthenticated) {
+      navigate(`/`);
+    }
 
     async function fetchRoom(){
       const exist = await checkRoom(id)
