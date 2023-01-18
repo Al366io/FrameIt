@@ -26,10 +26,11 @@ function PartyRoomOwner() {
 
     async function fetchRoom(){
       const exist = await checkRoom(id)
+      console.log(exist);
       setRoomExists(exist);
     }
     fetchRoom();
-    
+
     if (navigator.share) {
       setCanShare(true);
     } else {
