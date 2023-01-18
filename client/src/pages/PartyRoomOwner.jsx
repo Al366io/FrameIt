@@ -20,14 +20,13 @@ function PartyRoomOwner() {
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate(`/`);
-    }
+    // if (!isAuthenticated) {
+    //   navigate(`/`);
+    // }
 
     async function fetchRoom(){
       const exist = await checkRoom(id)
-      console.log(exist.exists);
-      setRoomExists(exist.exist);
+      setRoomExists(exist.exists);
     }
     fetchRoom();
 
@@ -97,7 +96,7 @@ function PartyRoomOwner() {
           </div>
         </>
       ) : (
-        ''
+        <h1>Wrong Party :C</h1>
       )}
     </div>
   );
