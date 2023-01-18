@@ -26,7 +26,7 @@ router.get('/users/info/party/:email', checkIfUserHasParty);
 // TODO: ADD SECURITY TO THIS THING! ONLY OWNER SHOULD BE ABLE TO DELETE
 router.delete('/party', deleteParty);
 
-router.get('/party', checkIfPartyExists)
+router.get('/party/:id', checkIfPartyExists)
 // // NOT NEEDED ANYMORE; USING CLOUDINARY.
 // router.post('/party/add/:id', saveIncomingPhoto);
 
