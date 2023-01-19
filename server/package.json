@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  // "type": "module", todo: change to es6
   "scripts": {
     "start": "node index.js",
     "deploy": "rsync -aP --exclude 'node_modules' ~/Desktop/FrameIT/server/ root@165.232.114.202:/root/apps/FrameIt/server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +24,8 @@
     "socket.io": "^4.5.4"
   },
   "devDependencies": {
-    "eslint": "^8.31.0"
+    "@types/node": "^18.11.18",
+    "eslint": "^8.31.0",
+    "typescript": "^4.9.4"
   }
 }
