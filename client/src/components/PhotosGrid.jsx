@@ -26,7 +26,7 @@ function PhotosGrid({ id }) {
       setLoading(false);
     }, 7000);
 
-    const socket = io('https://www.frameit.social');
+    const socket = io('http://localhost:3000');
     socket.on('connect_error', () => {
       setTimeout(() => socket.connect(), 3000);
     });

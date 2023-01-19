@@ -1,20 +1,16 @@
 const Sequelize = require('sequelize');
-const { DB_CONNECTION_STRING } = require("../config");
+const { DB_USER, DB_NAME, DB_PASSWORD } = require("../config");
 const sequelize = new Sequelize(
-  process.env.DB_CONNECTION_STRING,
-  {
-    dialect: 'postgres',
+  DB_NAME, DB_USER, DB_PASSWORD, {
+    host: 'localhost',
     logging: false,
+    dialect: 'postgres',
     dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      },
       client_encoding: 'auto'
     }
   }
-);
-
+);  
+ 
 async function start() {
   try {
     await sequelize.authenticate();
@@ -23,4 +19,4 @@ async function start() {
     console.log('err' + error);
   }
 } start();
-module.exports = sequelize;
+module.exports = sequelize;  

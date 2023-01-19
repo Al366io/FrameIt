@@ -4,7 +4,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const router = require('./router');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3030;
 const http = require('http');
 const server = http.createServer(app);
 const socketIo = require('socket.io');
@@ -13,23 +13,22 @@ global.io = socketIo(server, {
   cors: {
     origin: [
       'http://localhost', 
-      'https://frame-it.vercel.app'
     ],
   },
   methods: ['GET', 'POST', 'DELETE'],
 }); //in case server and client run on different urls
 
-var whitelist = ['https://frame-it.vercel.app', 'http://localhost:3000'];
+var whitelist = [ 'http://localhost:3000'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     }
   },
-};
+}; 
 
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(
   fileUpload({
     limits: {

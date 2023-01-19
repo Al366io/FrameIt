@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 function Home() {
   const { isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0();
   const navigate = useNavigate();
-
+console.log(isAuthenticated)
   useEffect(() => {
     if (isAuthenticated) {
       navigate(`/dashboard`);

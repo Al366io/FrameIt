@@ -9,9 +9,9 @@ import 'font-awesome/css/font-awesome.min.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <Auth0Provider
-    domain={ process.env.DOMAIN_ID || "dev-1qkrqe1l7lkx2qt6.us.auth0.com"}
-    clientId={ process.env.CLIENT_ID || "Gse5squkieYkvFUOozcxIwnDxnPxwAAH"}
-    redirectUri={ process.env.REDIRECT_URI || "https://frame-it.vercel.app/dashboard/"}
+    domain={process.env.DOMAIN_ID || "dev-tfrj80myq4cljd41.us.auth0.com"}
+    clientId={process.env.CLIENT_ID || "i5wOLko87w1qqgDZtMQfD7JVlTjOpT8E"}
+    redirectUri={ process.env.REDIRECT_URI || "http://localhost:3000/dashboard"}
     // domain={process.env.DOMAIN_ID}
     // clientId={process.env.CLIENT_ID}
     // redirectUri={process.env.REDIRECT_URI}

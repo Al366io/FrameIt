@@ -16,6 +16,10 @@ async function createIfNotThere(user) {
   }
 }
 
+// To check if the user logged in has already an instance in the db, and if not it creates one for him 
+// Takes email of the owner as req.body.email and returns 204 if already exists or if its created.
+// Returns 500 if not. (This is used also to see if backend is up since it's the first request made by frontend)
+
 exports.createOwner = async (req, res) => {
   try {
     const email = req.body.email;
@@ -30,6 +34,9 @@ exports.createOwner = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+// creates a party for the owner, if he doesnt have one already.
+// takes in req.body.email and returns the id of the party just created (also triggers setInterval for that party)
 
 exports.createParty = async (req, res) => {
   try {
@@ -71,6 +78,9 @@ exports.createParty = async (req, res) => {
   }
 };
 
+// checks if user already have a party
+// returns the id of that party and 200 if found, otherwise 204 if user is there but doesnt have party
+
 exports.checkIfUserHasParty = async (req, res) => {
   try {
     const userEmail = req.params.email;
@@ -91,6 +101,9 @@ exports.checkIfUserHasParty = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+// given a partyId, deletes that party
+// TODO: ADD SECURITY TO THIS THING! ONLY OWNER SHOULD BE ABLE TO DELETE
 
 exports.deleteParty = async (req, res) => {
   try {
@@ -120,6 +133,10 @@ exports.deleteParty = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+// gets the url of cloudinary where a ph is being set and insert it 
+// in the database, associated with the party id
+// returns true or false
 
 exports.insertUrlInDb = async (req, res) => {
   try {
@@ -153,6 +170,9 @@ exports.insertUrlInDb = async (req, res) => {
     res.sendStatus(404);
   }
 };
+
+// returns the socketIo ID of the room associated with that party.
+// so that Frontend can join the room and listen for the data being broadcasted.
 
 exports.getSocketRoom = async (req, res) => {
   try {
