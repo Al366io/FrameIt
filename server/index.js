@@ -11,24 +11,22 @@ const socketIo = require('socket.io');
 /* global io */
 global.io = socketIo(server, {
   cors: {
-    origin: [
-      'http://localhost', 
-    ],
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'DELETE'],
   },
-  methods: ['GET', 'POST', 'DELETE'],
 }); //in case server and client run on different urls
 
-var whitelist = [ 'http://localhost:3000'];
+var whitelist = ['http://localhost:3000', 'http://localhost:3030'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     }
   },
-}; 
+};
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(
   fileUpload({
     limits: {

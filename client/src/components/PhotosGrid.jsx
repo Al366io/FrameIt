@@ -10,8 +10,8 @@ import '../styles/Dashboard.css';
 
 /*
   Here you:
-  1. get the array of photos from the database (socket.io) 
-  2. map it, displaying a photo component for every one of them 
+  1. get the array of photos from the database (socket.io)
+  2. map it, displaying a photo component for every one of them
   */
 
 function PhotosGrid({ id }) {
@@ -26,9 +26,9 @@ function PhotosGrid({ id }) {
       setLoading(false);
     }, 7000);
 
-    const socket = io('http://localhost:3000');
+    const socket = io('http://localhost:3030');
     socket.on('connect_error', () => {
-      setTimeout(() => socket.connect(), 3000);
+      setTimeout(() => socket.connect(), 3030);
     });
 
     async function fetchSocketRoomId() {

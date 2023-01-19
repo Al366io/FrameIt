@@ -155,7 +155,7 @@ exports.insertUrlInDb = async (req, res) => {
     picsArr.push(url);
     console.log('New pics arr is: ' + picsArr);
     // update the record in the db
-    const update = await Party.update(
+    await Party.update(
       {
         pics: JSON.stringify(picsArr),
       },
