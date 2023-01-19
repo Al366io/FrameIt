@@ -23,6 +23,7 @@ function PartyRoomPH() {
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth0();
   const [roomExists, setRoomExists] = useState(true);
+  const [isOwner, setIsOwner] = useState(false); // TODO: CHECK IF THE USER AUTHENTICATED IS THE OWNER OF THE ROOM. IF YES; SHOW THE back2thelobby button
 
   useEffect(() => {
     async function fetchRoom() {
@@ -85,7 +86,7 @@ function PartyRoomPH() {
           <div className="firstHalf">
             {' '}
             ROOM #{id}
-            {isAuthenticated ? (
+            {isAuthenticated && isOwner ? (
               <button onClick={goBack} className="mainButton">
                 Back 2 the Lobby
               </button>

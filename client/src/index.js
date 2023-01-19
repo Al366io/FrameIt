@@ -11,7 +11,7 @@ root.render(
 <Auth0Provider
     domain={ process.env.DOMAIN_ID || "dev-1qkrqe1l7lkx2qt6.us.auth0.com"}
     clientId={ process.env.CLIENT_ID || "Gse5squkieYkvFUOozcxIwnDxnPxwAAH"}
-    redirectUri={ process.env.REDIRECT_URI || "https://frame-it.vercel.app/dashboard/"}
+    redirectUri={ process.env.REDIRECT_URI || "https://app.frameit.social/dashboard/"}
     // domain={process.env.DOMAIN_ID}
     // clientId={process.env.CLIENT_ID}
     // redirectUri={process.env.REDIRECT_URI}
