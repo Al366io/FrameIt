@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  // "type": "module", todo: change to es6
   "scripts": {
     "start": "node index.js",
     "deploy": "rsync -aP --exclude 'node_modules' ~/Desktop/FrameIT/server/ root@165.232.114.202:/root/apps/FrameIt/server",
