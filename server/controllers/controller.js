@@ -16,7 +16,7 @@ async function createIfNotThere(user) {
   }
 }
 
-// To check if the user logged in has already an instance in the db, and if not it creates one for him 
+// To check if the user logged in has already an instance in the db, and if not it creates one for him
 // Takes email of the owner as req.body.email and returns 204 if already exists or if its created.
 // Returns 500 if not. (This is used also to see if backend is up since it's the first request made by frontend)
 
@@ -134,7 +134,7 @@ exports.deleteParty = async (req, res) => {
   }
 };
 
-// gets the url of cloudinary where a ph is being set and insert it 
+// gets the url of cloudinary where a ph is being set and insert it
 // in the database, associated with the party id
 // returns true or false
 
@@ -155,7 +155,7 @@ exports.insertUrlInDb = async (req, res) => {
     picsArr.push(url);
     console.log('New pics arr is: ' + picsArr);
     // update the record in the db
-    await Party.update(
+    const update = await Party.update(
       {
         pics: JSON.stringify(picsArr),
       },

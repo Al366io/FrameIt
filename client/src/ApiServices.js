@@ -9,24 +9,22 @@ export function generateRandomString(length) {
   return result;
 }
 
-const {REACT_APP_BACKEND_HOST} = process.env
+const { REACT_APP_BACKEND_HOST } = process.env;
 
 export async function createOwner(user_email) {
   try {
     const data = {
       email: user_email,
     };
-  const response = await fetch(`${REACT_APP_BACKEND_HOST}/users/owner`, {
+    const response = await fetch(`${REACT_APP_BACKEND_HOST}/users/owner`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     }).then((response) => response);
-    if (response.status === 204) 
-      return 1
-    else
-      return 0
+    if (response.status === 204) return 1;
+    else return 0;
   } catch (error) {
     return 0;
   }
@@ -77,24 +75,24 @@ export async function deleteParty(id) {
 export async function sendImage(data) {
   const formData = new FormData();
   formData.append('file', data, generateRandomString(10));
-  formData.append('upload_preset', 'frameit');
+  formData.append('upload_preset', 'enge1fht');
 
-  console.log(formData)
-
-  const response = fetch(`https://api.cloudinary.com/v1_1/dlshfgwja/image/upload`, {
+  const response = fetch(`https://api.cloudinary.com/v1_1/dlshfgwja/upload`, {
     method: 'POST',
     body: formData,
-  }).then(async (res) => {
-    const result = await res.json();
-    return result["secure_url"];
-  });
+  })
+    .then(async (res) => {
+      const result = await res.json();
+      return result['secure_url'];
+    })
+    .catch((error) => console.log({ error }));
   return response;
 }
 
 export async function sendUrlToDb(url, id) {
   const data = {
     url: url,
-    partyId: id
+    partyId: id,
   };
   const response = fetch(`${REACT_APP_BACKEND_HOST}/party/upload`, {
     method: 'POST',
@@ -108,11 +106,11 @@ export async function sendUrlToDb(url, id) {
   return response;
 }
 
-export async function getSocketRoomId (id) {
+export async function getSocketRoomId(id) {
   try {
-    const response = fetch(`${REACT_APP_BACKEND_HOST}/party/socketRoom/${id}`).then(
-      (response) => response.text()
-    );
+    const response = fetch(
+      `${REACT_APP_BACKEND_HOST}/party/socketRoom/${id}`
+    ).then((response) => response.text());
     return response;
   } catch (error) {
     console.log(error);
@@ -120,14 +118,14 @@ export async function getSocketRoomId (id) {
   }
 }
 
-export async function checkRoom (id) {
+export async function checkRoom(id) {
   try {
-    const response = fetch(`${REACT_APP_BACKEND_HOST}/party/${id}`).then(
-      (response) => response.json()
-    ).then((res) => res)
+    const response = fetch(`${REACT_APP_BACKEND_HOST}/party/${id}`)
+      .then((response) => response.json())
+      .then((res) => res);
     return response;
   } catch (error) {
     console.log(error);
     return false;
   }
-} 
+}

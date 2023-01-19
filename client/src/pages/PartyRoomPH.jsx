@@ -1,7 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { generateRandomString, sendImage, sendUrlToDb, checkRoom } from '../ApiServices';
+import {
+  generateRandomString,
+  sendImage,
+  sendUrlToDb,
+  checkRoom,
+} from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
@@ -39,6 +44,7 @@ function PartyRoomPH() {
       setLoading(true);
       const input = document.getElementById('foto').files[0];
       const url = await sendImage(photoTaken, id);
+      console.log({ url });
       if (url) {
         input.value = null;
         await sendUrlToDb(url, id);

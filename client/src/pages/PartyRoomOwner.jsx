@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkRoom } from '../ApiServices'
+import { checkRoom } from '../ApiServices';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -10,6 +10,8 @@ import Navbar from '../components/Navbar';
 
 import '../styles/Dashboard.css';
 import '../styles/animations.css';
+
+const { REACT_APP_BACKEND_HOST } = process.env;
 
 function PartyRoomOwner() {
   const { id } = useParams();
@@ -24,8 +26,8 @@ function PartyRoomOwner() {
       navigate(`/`);
     }
 
-    async function fetchRoom(){
-      const exist = await checkRoom(id)
+    async function fetchRoom() {
+      const exist = await checkRoom(id);
       setRoomExists(exist.exists);
     }
     fetchRoom();
@@ -42,7 +44,7 @@ function PartyRoomOwner() {
       navigator
         .share({
           title: 'FrameIt - Room',
-          url: `https://frame-it.vercel.app/party/${id}/ph`,
+          url: `${REACT_APP_BACKEND_HOST}/party/${id}/ph`,
         })
         .then(() => {
           console.log('Thanks for sharing!');
@@ -54,7 +56,7 @@ function PartyRoomOwner() {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://frame-it.vercel.app/party/${id}/ph`);
+    navigator.clipboard.writeText(`${REACT_APP_BACKEND_HOST}/party/${id}/ph`);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
@@ -68,7 +70,7 @@ function PartyRoomOwner() {
   return (
     <div className="dashboardWrapper">
       <Navbar></Navbar>
-      {(isAuthenticated && roomExists)? (
+      {isAuthenticated && roomExists ? (
         <>
           <div className="qrWrap">
             <h3 className="removeDefaultStyling">Room #{id}</h3>
@@ -76,7 +78,7 @@ function PartyRoomOwner() {
               bgColor="transparent"
               id="dash-qr"
               size="130px"
-              value={`https://frame-it.vercel.app/party/${id}/ph`}
+              value={`${REACT_APP_BACKEND_HOST}/party/${id}/ph`}
             />
             <button className="mainButton" onClick={handleShare}>
               {canShare ? (
