@@ -27,12 +27,14 @@ function PartyRoomOwner() {
     }
 
     async function fetchRoom() {
-      const exist = await checkRoom(id);
-      setRoomExists(exist.exists);
+      if (id) {
+        const exist = await checkRoom(id);
+        setRoomExists(exist.exists);
+      }
     }
     fetchRoom();
 
-    if (navigator.share) {
+    if (navigator) {
       setCanShare(true);
     } else {
       setCanShare(false);
@@ -77,7 +79,7 @@ function PartyRoomOwner() {
             <QRCodeSVG
               bgColor="transparent"
               id="dash-qr"
-              size="130px"
+              size={130}
               value={`${REACT_APP_BACKEND_HOST}/party/${id}/ph`}
             />
             <button className="mainButton" onClick={handleShare}>
