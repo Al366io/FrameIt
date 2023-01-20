@@ -14,6 +14,7 @@ import '../styles/Dashboard.css';
 import { MagnifyingGlass } from 'react-loader-spinner';
 
 function Dashboard() {
+  // todo: id not used?
   const { id } = useParams();
   const navigate = useNavigate();
   const { isAuthenticated, user, logout, loginWithRedirect } = useAuth0();
@@ -21,24 +22,24 @@ function Dashboard() {
   const [isUp, setIsUp] = useState(1);
   const [loading, setLoading] = useState(true);
   const [askConfirm, setAskConfirm] = useState(false)
-
+  console.log({user})
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
 
     async function fetchData() {
-      if (isAuthenticated) {
-        const up = await createOwner(user.email);
-        setIsUp(up);
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
-        if (isUp) {
-          const partyId = await checkForParty(user.email);
-          if (partyId) setPartyId(partyId);
+      if (isAuthenticated && user) {
+          const up = await createOwner(user.email ?? '')
+          setIsUp(up);
+          setTimeout(() => {
+            setLoading(false);
+          }, 500);
+          if (isUp) {
+            const partyId = await checkForParty(user.email ?? '');
+            if (partyId) setPartyId(partyId);
+          }
         }
-      }
     }
     fetchData();
     setTimeout(() => {
@@ -48,9 +49,9 @@ function Dashboard() {
     }, 500);
   }, []);
 
-  const handleCreate = async (e) => {
+  const handleCreate: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
-    const id = await createParty(user.email);
+    const id = await createParty(user?.email as string);
     if (id) {
       navigate(`/party/${id}`);
     }
@@ -67,7 +68,7 @@ function Dashboard() {
   const handleDelete = async () => {
     setAskConfirm(false);
     const done = await deleteParty(partyId);
-    if (done == 'Not Found') {
+    if (done === 'Not Found') {
       return;
     }
     setPartyId('');
@@ -100,7 +101,7 @@ function Dashboard() {
               <>
                 <div className="firstHalfDash">
                   {isAuthenticated ? (
-                    <div className="hello"> Hello, {user.given_name} ! </div>
+                    <div className="hello"> Hello, {user?.given_name} ! </div>
                   ) : (
                     ''
                   )}
@@ -132,7 +133,7 @@ function Dashboard() {
                 </div>
                 <div className="secondHalfDash"></div>
                 {isAuthenticated ? (
-                  <div className="navButton" onClick={logout}>
+                  <div className="navButton" onClick={() => logout()}>
                     <button className="logButton">LOGOUT</button>
                   </div>
                 ) : (
