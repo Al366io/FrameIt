@@ -27,8 +27,10 @@ function PartyRoomOwner() {
     }
 
     async function fetchRoom() {
-      const exist = await checkRoom(id);
-      setRoomExists(exist.exists);
+      if (id) {
+        const exist = await checkRoom(id);
+        setRoomExists(exist.exists);
+      }
     }
     fetchRoom();
 
