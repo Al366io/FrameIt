@@ -52,7 +52,7 @@ function PartyRoomPH() {
       if (url && input) {
         input.value = '';
         await sendUrlToDb(url, id!);
-        setSomething(false);
+        setSomething('');
         setFileUploaded(false);
         setLoading(false);
       } else {
@@ -76,7 +76,7 @@ function PartyRoomPH() {
       setFileUploaded(true);
       fileReader.readAsDataURL(compressed);
       fileReader.addEventListener('load', function () {
-        setSomething(this.result);
+        setSomething(this.result as string);
       });
       setPhotoTaken(compressed);
     } else setFileUploaded(false);
@@ -112,7 +112,7 @@ function PartyRoomPH() {
                 id="foto"
                 type="file"
                 name="image"
-                capture="enviroment"
+                capture="environment"
                 accept="image/*"
                 onChange={handleChange}
               />
