@@ -24,30 +24,34 @@ function PartyRoomPH() {
   const { id } = useParams();
   const [fileUploaded, setFileUploaded] = useState(false);
   const [something, setSomething] = useState('');
-  const [photoTaken, setPhotoTaken] = useState({});
+  const [photoTaken, setPhotoTaken] = useState(new Blob());
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth0();
   const [roomExists, setRoomExists] = useState(true);
 
   useEffect(() => {
     async function fetchRoom() {
-      const exist = await checkRoom(id);
-      setRoomExists(exist.exists);
+      if (id) {
+        const exist = await checkRoom(id);
+        setRoomExists(exist.exists);
+      }
     }
     fetchRoom();
   }, []);
 
-  async function sendIt(e) {
+  async function sendIt(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     // to prevent from doing this action twice if pressing the send button while sending
     if (!loading) {
       setLoading(true);
-      const input = document.getElementById('foto').files[0];
-      const url = await sendImage(photoTaken, id);
+      // const input = document.getElementById('foto').files[0];
+      const input = document.getElementById('foto') as HTMLInputElement | null;
+      const file = input?.files![0];
+      const url = await sendImage(photoTaken);
       console.log({ url });
-      if (url) {
-        input.value = null;
-        await sendUrlToDb(url, id);
+      if (url && input) {
+        input.value = '';
+        await sendUrlToDb(url, id!);
         setSomething(false);
         setFileUploaded(false);
         setLoading(false);
@@ -63,8 +67,8 @@ function PartyRoomPH() {
 
   async function handleChange() {
     let compressed;
-    const input = document.getElementById('foto');
-    let photo = input.files[0];
+    const input = document.getElementById('foto') as HTMLInputElement;
+    let photo = input?.files![0];
     if (photo) {
       if (!compressed) {
         compressed = await compress(photo, 0.4);

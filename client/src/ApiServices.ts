@@ -74,7 +74,7 @@ export async function deleteParty(id: string) {
   return response;
 }
 
-export async function sendImage(data: string) {
+export async function sendImage(data: Blob) {
   const formData = new FormData();
   formData.append('file', data, generateRandomString(10));
   formData.append('upload_preset', 'enge1fht');
