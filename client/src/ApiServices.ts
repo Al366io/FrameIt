@@ -1,4 +1,4 @@
-export function generateRandomString(length) {
+export function generateRandomString(length: number) {
   let result = '';
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -11,7 +11,7 @@ export function generateRandomString(length) {
 
 const { REACT_APP_BACKEND_HOST } = process.env;
 
-export async function createOwner(user_email) {
+export async function createOwner(user_email: string) {
   try {
     const data = {
       email: user_email,
@@ -30,7 +30,7 @@ export async function createOwner(user_email) {
   }
 }
 
-export async function createParty(email) {
+export async function createParty(email: string) {
   const data = {
     email: email,
   };
@@ -46,11 +46,13 @@ export async function createParty(email) {
   return response;
 }
 
-export async function checkForParty(email) {
+// todo: better error handling?
+
+export async function checkForParty(email: string) {
   const response = fetch(`${REACT_APP_BACKEND_HOST}/users/info/party/${email}`)
     .then((response) => {
       if (response.status === 200) return response.text();
-      else return false;
+      else return;
     })
     .then((response) => {
       if (response) return response;
@@ -59,7 +61,7 @@ export async function checkForParty(email) {
   return response;
 }
 
-export async function deleteParty(id) {
+export async function deleteParty(id: string) {
   const response = fetch(`${REACT_APP_BACKEND_HOST}/party`, {
     method: 'DELETE',
     headers: {
@@ -72,7 +74,7 @@ export async function deleteParty(id) {
   return response;
 }
 
-export async function sendImage(data) {
+export async function sendImage(data: string) {
   const formData = new FormData();
   formData.append('file', data, generateRandomString(10));
   formData.append('upload_preset', 'enge1fht');
@@ -89,7 +91,7 @@ export async function sendImage(data) {
   return response;
 }
 
-export async function sendUrlToDb(url, id) {
+export async function sendUrlToDb(url: string, id: string) {
   const data = {
     url: url,
     partyId: id,
@@ -106,7 +108,7 @@ export async function sendUrlToDb(url, id) {
   return response;
 }
 
-export async function getSocketRoomId(id) {
+export async function getSocketRoomId(id: string) {
   try {
     const response = fetch(
       `${REACT_APP_BACKEND_HOST}/party/socketRoom/${id}`
@@ -118,7 +120,7 @@ export async function getSocketRoomId(id) {
   }
 }
 
-export async function checkRoom(id) {
+export async function checkRoom(id: string) {
   try {
     const response = fetch(`${REACT_APP_BACKEND_HOST}/party/${id}`)
       .then((response) => response.json())
