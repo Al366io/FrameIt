@@ -8,13 +8,11 @@ import { generateRandomString } from '../ApiServices';
 import '../styles/animations.css';
 import '../styles/Dashboard.css';
 
-/*
-  Here you:
-  1. get the array of photos from the database (socket.io)
-  2. map it, displaying a photo component for every one of them
-  */
+type PhotosGridProps = {
+  id: string
+}
 
-function PhotosGrid({ id }) {
+function PhotosGrid({ id } : PhotosGridProps) {
   const [buffer, setBuffer] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +38,14 @@ function PhotosGrid({ id }) {
     socket.on('pics', (data) => {
       setBuffer(data);
     });
-  }, []);
+  }, [id]);
+
+  /*
+  Here you:
+  1. get the array of photos from the database (socket.io)
+  2. map it, displaying a photo component for every one of them
+  */
+
 
   function handleLoaded() {
     setTimeout(() => {
@@ -52,7 +57,7 @@ function PhotosGrid({ id }) {
     setPhotos(buffer);
   }, [buffer]);
 
-  function openModal(picUrl) {
+  function openModal(picUrl: string) {
     setModalOpen(true);
     setModalUrl(picUrl);
   }
@@ -62,7 +67,7 @@ function PhotosGrid({ id }) {
     setModalUrl('');
   }
 
-  async function downloadImage(imageSrc) {
+  async function downloadImage(imageSrc: string) {
     const image = await fetch(imageSrc);
     const imageBlog = await image.blob();
     const imageURL = URL.createObjectURL(imageBlog);
@@ -81,7 +86,7 @@ function PhotosGrid({ id }) {
         className={modalOpen ? 'modal' : 'modal invisible'}
         onClick={closeModal}
       >
-        <img src={modalUrl} className="innerModal"></img>
+        <img src={modalUrl} className="innerModal" alt=""></img>
         <button
           className="logButton zidx"
           onClick={() => downloadImage(modalUrl)}
@@ -111,6 +116,7 @@ function PhotosGrid({ id }) {
                 src={pic}
                 onLoad={handleLoaded}
                 onClick={() => openModal(pic)}
+                alt=""
               ></img>
             );
           })}
