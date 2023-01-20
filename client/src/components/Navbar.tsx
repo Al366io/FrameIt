@@ -17,7 +17,7 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <a className="aLogo">
+      <a className="aLogo" >
         <img
           width={'180px'}
           onClick={handleGohome}

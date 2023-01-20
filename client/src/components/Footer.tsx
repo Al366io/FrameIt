@@ -13,12 +13,14 @@ function Footer() {
           <img
             className="icon"
             src={process.env.PUBLIC_URL + '/assets/githubIcon.png'}
+            alt="logo"
           ></img>
         </a>
         <a href='https://www.linkedin.com/in/alessio-nannipieri-a27550218/'>
           <img
             className="icon"
             src={process.env.PUBLIC_URL + '/assets/linkedinIcon.png'}
+            alt="icon"
           ></img>
         </a>
       </div>
