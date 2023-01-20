@@ -151,7 +151,7 @@ function PartyRoomPH() {
                   </button>
                 </>
               ) : (
-                <PhotosGrid id={id} />
+                <PhotosGrid id={id ?? ''} />
               )}
             </div>
           )}

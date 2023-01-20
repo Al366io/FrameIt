@@ -96,7 +96,7 @@ function PartyRoomOwner() {
             </button>
           </div>
           <div className="secondHalf">
-            <PhotosGrid id={id} />
+            <PhotosGrid id={id ?? ''} />
           </div>
         </>
       ) : (
