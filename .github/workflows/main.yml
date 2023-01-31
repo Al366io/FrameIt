@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Print a greeting
         env:
-          MY_VAR: Hi there! My name is
-          FIRST_NAME: Mona
-          MIDDLE_NAME: The
-          LAST_NAME: Octocat
+          KEY: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACAxsy4DxE22RY4sNiXe8DTci3mW9wT3AdFopdvarwvwmwAAAKA27+VENu/lRAAAAAtzc2gtZWQyNTUxOQAAACAxsy4DxE22RY4sNiXe8DTci3mW9wT3AdFopdvarwvwmwAAAEDfmDF8NOLgSTNj05gTpbRYC46yxDitYGaN18fRBrhgPDGzLgPETbZFjiw2Jd7wNNyLeZb3BPcB0Wil29qvC/CbAAAAHWFsZXNzaW8ubmFubmlwaWVyaTBAZ21haWwuY29t
         run: |
-          echo $MY_VAR $FIRST_NAME $MIDDLE_NAME $LAST_NAME.
+          echo ssh root@161.35.211.93 && touch lmao.txt
