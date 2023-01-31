@@ -11,4 +11,4 @@ jobs:
         env:
           KEY: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACAxsy4DxE22RY4sNiXe8DTci3mW9wT3AdFopdvarwvwmwAAAKA27+VENu/lRAAAAAtzc2gtZWQyNTUxOQAAACAxsy4DxE22RY4sNiXe8DTci3mW9wT3AdFopdvarwvwmwAAAEDfmDF8NOLgSTNj05gTpbRYC46yxDitYGaN18fRBrhgPDGzLgPETbZFjiw2Jd7wNNyLeZb3BPcB0Wil29qvC/CbAAAAHWFsZXNzaW8ubmFubmlwaWVyaTBAZ21haWwuY29t
         run: |
-          echo ssh root@161.35.211.93 && touch lmao.txt
+          ssh root@161.35.211.93 && touch lmao.txt
