@@ -12,6 +12,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/auth0": "^2.35.9",
+    "@types/jest": "^29.2.6",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
     "auth0": "^3.0.1",
     "cloudinary": "^1.33.0",
     "font-awesome": "^4.7.0",
@@ -19,9 +24,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
+    "react-query": "^3.39.2",
     "react-router-dom": "^6.6.2",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.5.4",
+    "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
