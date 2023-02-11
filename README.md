@@ -17,8 +17,9 @@
 
 <p align="center">
   Frame it is a virtual party platform that allows you to host an unforgettable virtual experience with your friends and family.
-  
-As the host, you can create your virtual party, and share the unique code or QR code with your guests. The guests can then join the party using the code and take photos using their camera. All the photos taken are instantly added to the party dashboard, where everyone can see and even download all the photos.
+  As the host, you can create your virtual party, and share the unique code or QR code with your guests. The guests can then join the party using the
+  code and take photos using their camera. All the photos taken are instantly added to the party dashboard, where everyone can see and even download all
+  the photos.
 </p>
 
 ## Table of Contents
