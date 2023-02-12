@@ -1,21 +1,17 @@
 import React from 'react';
-import '../styles/Home.css';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import Footer from '../components/Footer';
+import '../styles/Dashboard.css';
 
-function Home() {
-  const { isAuthenticated, loginWithRedirect, loginWithPopup } = useAuth0();
+// reachable at /party/:id/ph
+function JoinRoom() {
+  const { id } = useParams();
   const navigate = useNavigate();
+  function handleRedirect() {
+    navigate(`/party/${id}/ph/add`);
+  }
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate(`/dashboard`);
-    }
-  });
-  // TODO: HERE DO A: "JOIN A PARTY" BUTTON -> OPEN INPUT, you type in the code and you get redirected to that party room.
-  // TODO: INSERT FOOTER WITH MY INFO
   return (
     <div className="App">
       <div className="homeWrapper">
@@ -28,11 +24,11 @@ function Home() {
                 alt="img"
               ></img>
             </div>
-            <div className="slogan">
+            <div className="welcome">
               <h1 className="removeDefaultStyling"> Frame It </h1>
               <h2 className="removeDefaultStyling"> Share It </h2>
-              <button onClick={() => loginWithPopup()} className="logButton">
-                LOGIN
+              <button onClick={() => handleRedirect()} className="logButton">
+                Join As Guest
               </button>
             </div>
           </div>
@@ -49,4 +45,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default JoinRoom;

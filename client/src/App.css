@@ -1,18 +1,9 @@
 * {
   font-family: 'Comfortaa', cursive;
-  /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
   font-weight: 800;
 }
 
 .App {
   width: 100vw;
   height: 100vh;
-  /* background-color: black; */
-  /* background: rgb(237, 130, 255);
-  background: linear-gradient(
-    -330deg,
-    rgba(237, 130, 255, 1) 0%,
-    rgba(144, 97, 207, 1) 65%,
-    rgba(134, 87, 210, 1) 83%
-  ); */
 }
