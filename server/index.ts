@@ -12,7 +12,7 @@ import {
 } from './types/socketio.types';
 
 const app = express();
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 3000;
 const httpServer = createServer(app);
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
