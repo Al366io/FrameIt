@@ -13,7 +13,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/party/:id" element={<PartyRoomOwner />} />
+          <Route path="/party/:partyId" element={<PartyRoomOwner />} />
           <Route path="/party/:id/ph" element={<JoinRoom />} />
           <Route path="/party/:id/ph/add" element={<PartyRoomPH />} />
           <Route path="*" element={<NoPage />} />

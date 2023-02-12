@@ -1,7 +1,12 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { generateRandomString, sendImage, sendUrlToDb, checkRoom } from '../ApiServices';
+import {
+  generateRandomString,
+  sendImage,
+  sendUrlToDb,
+  checkRoom,
+} from '../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 import '../styles/Dashboard.css';
 import { compress, downloadFile } from 'image-conversion';
@@ -9,46 +14,42 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { ProgressBar } from 'react-loader-spinner';
 import PhotosGrid from '../components/PhotosGrid';
+import { useQuery } from 'react-query';
 
 // TODO: ADD PASSWORD TO PRIVATE ROOMS
 
-// reachable at /party/:id/ph/add
 function PartyRoomPH() {
-  const navigate = useNavigate();
-  const fileReader = new FileReader();
   const { id } = useParams();
-  const [fileUploaded, setFileUploaded] = useState(false);
-  const [something, setSomething] = useState('');
-  const [photoTaken, setPhotoTaken] = useState({});
-  const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuth0();
-  const [roomExists, setRoomExists] = useState(true);
-  const [isOwner, setIsOwner] = useState(false); // TODO: CHECK IF THE USER AUTHENTICATED IS THE OWNER OF THE ROOM. IF YES; SHOW THE back2thelobby button
+  const navigate = useNavigate();
+  const [fileUploaded, setFileUploaded] = useState(false);
+  const [imgPreview, setImgPreview] = useState('');
+  const [photoTaken, setPhotoTaken] = useState(new Blob());
+  const fileReader = new FileReader();
 
-  useEffect(() => {
-    async function fetchRoom() {
-      const exist = await checkRoom(id);
-      setRoomExists(exist.exists);
+  const { isLoading, isError } = useQuery('check if room exists', async () => {
+    const exist = await checkRoom(id ?? '');
+    if (exist.exists) {
+      return;
+    } else {
+      throw new Error('The room does not exist');
     }
-    fetchRoom();
-  }, []);
+  });
 
-  async function sendIt(e) {
+  async function sendIt(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // to prevent from doing this action twice if pressing the send button while sending
-    if (!loading) {
-      setLoading(true);
-      const input = document.getElementById('foto').files[0];
-      const url = await sendImage(photoTaken, id);
-      if (url) {
-        input.value = null;
-        await sendUrlToDb(url, id);
-        setSomething(false);
-        setFileUploaded(false);
-        setLoading(false);
-      } else {
-        alert('something went wrong :C');
+    const input = document.getElementById('foto') as HTMLInputElement | null;
+    const file = input?.files![0];
+    const url = await sendImage(photoTaken);
+    if (url && file) {
+      input.value = '';
+      await sendUrlToDb(url, id!);
+      if (isAuthenticated) {
+        navigate(`/party/${id}`);
       }
+      setFileUploaded(false);
+    } else {
+      alert('something went wrong :C');
     }
   }
 
@@ -58,19 +59,19 @@ function PartyRoomPH() {
 
   async function handleChange() {
     let compressed;
-    const input = document.getElementById('foto');
-    let photo = input.files[0];
+    const input = document.getElementById('foto') as HTMLInputElement;
+    let photo = input?.files![0];
     if (photo) {
-      if (!compressed) {
-        compressed = await compress(photo, 0.4);
-      }
-      setFileUploaded(true);
+      compressed = await compress(photo, 0.4);
       fileReader.readAsDataURL(compressed);
       fileReader.addEventListener('load', function () {
-        setSomething(this.result);
+        setImgPreview(this.result as string);
       });
+      setFileUploaded(true);
       setPhotoTaken(compressed);
-    } else setFileUploaded(false);
+    } else {
+      setFileUploaded(false);
+    }
   }
 
   function goBack() {
@@ -79,14 +80,14 @@ function PartyRoomPH() {
   return (
     <div className="dashboardWrapper">
       <Navbar></Navbar>
-      {!roomExists ? (
+      {isError ? (
         <h1>Wrong Room :C</h1>
       ) : (
         <>
           <div className="firstHalf">
             {' '}
             ROOM #{id}
-            {isAuthenticated && isOwner ? (
+            {isAuthenticated ? (
               <button onClick={goBack} className="mainButton">
                 Back 2 the Lobby
               </button>
@@ -103,13 +104,17 @@ function PartyRoomPH() {
                 id="foto"
                 type="file"
                 name="image"
-                capture="enviroment"
+                capture="environment"
                 accept="image/*"
                 onChange={handleChange}
               />
               {fileUploaded ? (
                 <>
-                  <button className="logButton" type="submit">
+                  <button
+                    className="logButton"
+                    type="submit"
+                    disabled={!fileUploaded}
+                  >
                     SEND
                   </button>
                 </>
@@ -118,7 +123,7 @@ function PartyRoomPH() {
               )}
             </form>
           </div>
-          {loading ? (
+          {isLoading ? (
             <div className="secondHalf">
               <ProgressBar
                 height="90"
@@ -135,14 +140,18 @@ function PartyRoomPH() {
               {fileUploaded ? (
                 <>
                   <div className="imagePreview">
-                    <img className="imagePreviewActually" src={something}></img>
+                    <img
+                      className="imagePreviewActually"
+                      src={imgPreview}
+                      alt=""
+                    ></img>
                   </div>
                   <button className="logButton" onClick={downloadIt}>
                     DOWNLOAD ⬇️
                   </button>
                 </>
               ) : (
-                <PhotosGrid id={id} />
+                <PhotosGrid id={id ?? ''} />
               )}
             </div>
           )}
