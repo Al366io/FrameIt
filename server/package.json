@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "tsc && node dist/index.js",
     "deploy": "rsync -aP --exclude 'node_modules' ~/Desktop/FrameIT/server/ root@165.232.114.202:/root/apps/FrameIt/server",
     "test": "jest --verbose ---detectOpenHandles",
     "build": "tsc"

@@ -8,8 +8,11 @@ import { useQuery } from 'react-query';
 import PhotosGrid from '../components/PhotosGrid';
 import Navbar from '../components/Navbar';
 
+/// <reference path="./navigator.d.ts" />
+
 import '../styles/Dashboard.css';
 import '../styles/animations.css';
+
 
 const { REACT_APP_BACKEND_HOST } = process.env;
 
@@ -32,15 +35,13 @@ function PartyRoomOwner() {
   });
 
   useEffect(() => {
-    if (navigator) {
-      setCanShare(true);
-    } else {
-      setCanShare(false);
-    }
     if (!isAuthenticated) {
       navigate(`/`);
     }
-  }, [isAuthenticated, navigate]);
+    if ("share" in navigator) {
+      setCanShare(true);
+    }
+  }, [isAuthenticated]);
 
   function handleShare() {
     if (navigator.share) {
