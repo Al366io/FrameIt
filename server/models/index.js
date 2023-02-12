@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize');
-const { DB_CONNECTION_STRING } = require("../config");
+const { AuthTableOwner } = require('./model');
 const sequelize = new Sequelize(
-  process.env.DB_CONNECTION_STRING,
+  process.env.DATABASE_URL,
   {
     dialect: 'postgres',
     logging: false,
     dialectOptions: {
+      // Your pg options here
       ssl: {
         require: true,
         rejectUnauthorized: false
