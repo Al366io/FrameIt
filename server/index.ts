@@ -17,12 +17,12 @@ const httpServer = createServer(app);
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['https://app.frameit.social', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'DELETE'],
   },
 });
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3030'];
+const whitelist = ['http://localhost:3000', 'http://localhost:3030', 'https://app.frameit.social'];
 
 const corsOptions = {
   origin: function (origin: string, callback: Function) {

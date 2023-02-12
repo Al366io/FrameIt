@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const socketIo = require('socket.io');
 global.io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://app.frameit.social',
   },
 }); //in case server and client run on different urls
 app.use(express.json());

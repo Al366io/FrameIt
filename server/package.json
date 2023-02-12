@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "rsync -aP --exclude 'node_modules' ~/Desktop/FrameIT/server/ root@165.232.114.202:/root/apps/FrameIt/server"
   },
   "author": "",
   "license": "ISC",

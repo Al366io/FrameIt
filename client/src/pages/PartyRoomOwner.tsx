@@ -82,7 +82,7 @@ function PartyRoomOwner() {
               bgColor="transparent"
               id="dash-qr"
               size={130}
-              value={`http://localhost:3000/party/${partyId}/ph`}
+              value={`https://app.frameit.social/party/${partyId}/ph`}
             />
             <button className="mainButton" onClick={handleShare}>
               {canShare ? (

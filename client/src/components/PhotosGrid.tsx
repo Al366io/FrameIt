@@ -12,7 +12,7 @@ import { useQuery } from 'react-query';
 type PhotosGridProps = {
   id: string;
 };
-const socket = io('http://localhost:3030');
+const socket = io('https://framet.social');
 
 function PhotosGrid({ id }: PhotosGridProps) {
   const [modalOpen, setModalOpen] = useState(false);
