@@ -1,8 +1,17 @@
 const Sequelize = require('sequelize');
-sequelize = new Sequelize(
-  'postgresql://localhost:5432/frameitdb',
+const { DB_CONNECTION_STRING } = require("../config");
+const sequelize = new Sequelize(
+  process.env.DB_CONNECTION_STRING,
   {
-    logging: false
+    dialect: 'postgres',
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      },
+      client_encoding: 'auto'
+    }
   }
 );
 
