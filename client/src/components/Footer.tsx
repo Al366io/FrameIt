@@ -5,7 +5,6 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footerInfo">
-        <p>This App is being developed as a personal project.</p>
         <p>Feel free to make contributions or contact me at:</p>
       </div>
       <div className="footerLinks">
