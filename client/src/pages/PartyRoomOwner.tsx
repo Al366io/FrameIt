@@ -48,7 +48,7 @@ function PartyRoomOwner() {
       navigator
         .share({
           title: 'FrameIt - Room',
-          url: `${REACT_APP_BACKEND_HOST}/party/${partyId}/ph`,
+          url: `https://app.frameit.social/party/${partyId}/ph`,
         })
         .then(() => {
           console.log('Thanks for sharing!');
@@ -60,7 +60,7 @@ function PartyRoomOwner() {
   }
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`http://localhost:3000/party/${partyId}/ph`);
+    navigator.clipboard.writeText(`https://app.frameit.social/party/${partyId}/ph`);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
